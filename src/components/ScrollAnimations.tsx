@@ -1,0 +1,398 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Hook for using scroll animations
+export const useScrollAnimations = () => {
+  const ctx = useRef<gsap.Context | null>(null);
+
+  useEffect(() => {
+    ctx.current = gsap.context(() => {});
+    return () => ctx.current?.revert();
+  }, []);
+
+  return ctx.current;
+};
+
+// Modern, subtle scroll animations for design agencies
+const ScrollAnimations = {
+  // Gentle fade up - like lazy loading but refined
+  fadeUp: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.2,
+      ease: "power3.out",
+      stagger: 0.15,
+      start: "top 90%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      y: 40,
+      filter: "blur(8px)"
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: defaults.duration,
+      ease: defaults.ease,
+      stagger: defaults.stagger,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none" // Only play once
+      }
+    });
+  },
+
+  // Minimal slide from left
+  slideInLeft: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.0,
+      ease: "power3.out",
+      start: "top 85%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      x: -30,
+      rotateY: -5
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      x: 0,
+      rotateY: 0,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Minimal slide from right
+  slideInRight: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.0,
+      ease: "power3.out",
+      start: "top 85%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      x: 30,
+      rotateY: 5
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      x: 0,
+      rotateY: 0,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Very subtle scale reveal
+  scaleReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.4,
+      ease: "power4.out",
+      start: "top 88%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      scale: 0.96,
+      rotateZ: 1
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      scale: 1,
+      rotateZ: 0,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Clean text reveal
+  textReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.05,
+      start: "top 90%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      y: 15,
+      skewY: 2
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      y: 0,
+      skewY: 0,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      stagger: defaults.stagger,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Refined image reveal
+  imageReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.6,
+      ease: "power4.out",
+      start: "top 80%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      opacity: 0,
+      scale: 1.05,
+      filter: "brightness(1.1)"
+    });
+
+    gsap.to(selector, {
+      opacity: 1,
+      scale: 1,
+      filter: "brightness(1)",
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Gentle background parallax
+  parallax: (selector: string | Element | Element[], speed = 0.3, options = {}) => {
+    gsap.to(selector, {
+      yPercent: -30 * speed,
+      ease: "none",
+      scrollTrigger: {
+        trigger: selector,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5,
+        ...options
+      }
+    });
+  },
+
+  // Smooth line draw
+  lineDraw: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.5,
+      ease: "power3.out",
+      start: "top 85%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      scaleX: 0,
+      transformOrigin: "left center",
+      opacity: 0.7
+    });
+
+    gsap.to(selector, {
+      scaleX: 1,
+      opacity: 1,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Clip path reveal (modern agency favorite)
+  clipReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.8,
+      ease: "power4.out",
+      start: "top 80%",
+      ...options
+    };
+
+    gsap.set(selector, {
+      clipPath: "inset(0 100% 0 0)",
+      opacity: 0.9
+    });
+
+    gsap.to(selector, {
+      clipPath: "inset(0 0% 0 0)",
+      opacity: 1,
+      duration: defaults.duration,
+      ease: defaults.ease,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Staggered container reveal
+  containerReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.0,
+      ease: "power3.out",
+      stagger: 0.1,
+      start: "top 85%",
+      ...options
+    };
+
+    const children = typeof selector === 'string' 
+      ? document.querySelectorAll(`${selector} > *`)
+      : (selector as Element).children;
+
+    gsap.set(children, {
+      opacity: 0,
+      y: 25,
+      filter: "blur(4px)"
+    });
+
+    gsap.to(children, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: defaults.duration,
+      ease: defaults.ease,
+      stagger: defaults.stagger,
+      scrollTrigger: {
+        trigger: selector,
+        start: defaults.start,
+        toggleActions: "play none none none"
+      }
+    });
+  },
+
+  // Initialize all animations on elements with data attributes
+  initAutoAnimations: () => {
+    // Auto-initialize based on data attributes
+    document.querySelectorAll('[data-animate]').forEach((element) => {
+      const animationType = element.getAttribute('data-animate');
+      const delay = parseFloat(element.getAttribute('data-delay') || '0');
+      const stagger = parseFloat(element.getAttribute('data-stagger') || '0');
+      
+      const options = { delay, stagger };
+      
+      switch (animationType) {
+        case 'fade-up':
+          ScrollAnimations.fadeUp(element, options);
+          break;
+        case 'slide-left':
+          ScrollAnimations.slideInLeft(element, options);
+          break;
+        case 'slide-right':
+          ScrollAnimations.slideInRight(element, options);
+          break;
+        case 'scale':
+          ScrollAnimations.scaleReveal(element, options);
+          break;
+        case 'text':
+          ScrollAnimations.textReveal(element, options);
+          break;
+        case 'image':
+          ScrollAnimations.imageReveal(element, options);
+          break;
+        case 'line':
+          ScrollAnimations.lineDraw(element, options);
+          break;
+        case 'clip':
+          ScrollAnimations.clipReveal(element, options);
+          break;
+        case 'container':
+          ScrollAnimations.containerReveal(element, options);
+          break;
+      }
+    });
+  },
+
+  // Batch animate multiple elements with optimal performance
+  batchAnimate: (elements: NodeListOf<Element> | Element[], animationType = 'fadeUp', options = {}) => {
+    if (!elements || elements.length === 0) return;
+
+    const animation = ScrollAnimations[animationType as keyof typeof ScrollAnimations];
+    if (typeof animation === 'function') {
+      (animation as Function)(elements, options);
+    }
+  },
+
+  // Observer for lazy loading animations
+  observeElements: (selector: string, animationType = 'fadeUp', options = {}) => {
+    if (typeof window === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const animation = ScrollAnimations[animationType as keyof typeof ScrollAnimations];
+            if (typeof animation === 'function') {
+              (animation as Function)(entry.target, options);
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    document.querySelectorAll(selector).forEach((el) => {
+      observer.observe(el);
+    });
+
+    return observer;
+  }
+};
+
+export default ScrollAnimations;
+export { ScrollAnimations };
+
+// Usage examples:
+// ScrollAnimations.fadeUp('.card', { start: "top 90%" });
+// ScrollAnimations.observeElements('.lazy-load', 'fadeUp');
+// ScrollAnimations.batchAnimate(elements, 'slideInLeft');
+// <div data-animate="fade-up" data-delay="0.2">Content</div>

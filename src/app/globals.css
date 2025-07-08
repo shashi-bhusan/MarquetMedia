@@ -1,7 +1,72 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Professional scroll and performance optimizations */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hardware acceleration for better performance */
+.hero-logo,
+.hero-text-item,
+.hero-arrow,
+.video-container,
+.magnetic,
+.interactive {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Magnetic elements */
+.magnetic {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection styles */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -147,4 +212,14 @@
       transform: translateX(-50%);
     }
   }
+}
+
+/* Custom SVG inversion for dark mode */
+.svg-logo {
+  filter: invert(0);
+  transition: filter 0.3s ease;
+}
+
+.dark .svg-logo {
+  filter: invert(1);
 }
