@@ -44,15 +44,12 @@ export default function AboutSection() {
     <section className="min-h-screen bg-cream dark:bg-background text-foreground px-4 md:px-6 lg:px-8 py-40" id="about">
       <div className="flex flex-col items-center-safe mx-auto">
         {/* Main Heading */}
-        <div className="text-left md:text-center mb-16">
-          <div className="">
-            <h1 ref={headingRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground leading-tighter mb-8">
-              <span className="block text-left md:text-right md:pr-20">BORN IN RANCHI, MARQUET MEDIA </span>
-              <span className="block text-left"> IS A <em className="italic font-baskerville tracking-tighter">full-stack creative media house </em>DESIGNED FOR</span>
-              <span className="block text-left"> DESIGNED FOR BRANDS THAT <em className="italic font-baskerville text-left tracking-tighter">want substance</em></span>
-              <span className="block text-left"> OVER THE NOISE.</span>
+        <div className="text-left flex items-center md:text-center mb-16">
+            <div className="">
+            <h1 ref={headingRef} className="text-3xl text-wrap sm:text-4xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-foreground leading-tighter mb-8  text-left">
+              <span className='w-48'>&nbsp;</span> BORN IN RANCHI, MARQUET MEDIA IS A <span className="italic font-baskerville tracking-tighter">full-stack creative media house</span> DESIGNED FOR BRANDS THAT <em className="italic font-baskerville tracking-tighter">want substance</em> OVER THE NOISE.
             </h1>
-           <div ref={lineRef} className="w-full h-px bg-border"></div>
+             <div ref={lineRef} className="w-full h-px bg-border mb-8"></div>
           </div>
         </div>
 

@@ -115,15 +115,15 @@ export default function Services() {
         <div className="w-full border-t border-border/90 mb-8 sm:mb-12 md:mb-16"></div>
         
         {/* Header Section */}
-        <div ref={headerRef} className="w-full mb-12 md:mb-16 lg:mb-64">
+        <div ref={headerRef} className="w-full mb-12 md:mb-16 lg:mb-32">
           {/* Main Content Grid */}
           <div className="flex flex-row justify-between item-end w-full">
             
             {/* Left Side - Main Heading */}
             <div className="lg:col-span-7 order-1">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-foreground tracking-tight leading-tight">
+              <h2 className="text-3xl text-wrap sm:text-4xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-foreground leading-tighter  text-left ">
                 CREATIVE 
-                <br className="sm:hidden" />
+                <span className="sm:hidden" />
                 <span className="italic font-baskerville tracking-tighter font-light">solutions</span>
                 <br />
                 THAT WORK
@@ -133,7 +133,7 @@ export default function Services() {
             {/* Right Side - Description & CTA */}
             <div className="lg:col-span-5 order-2 lg:order-2 flex flex-col justify-center lg:justify-end">
               <div className="space-y-6 lg:space-y-8">
-                <p className="text-xs sm:text-sm font-montserrat font-medium max-w-full lg:max-w-lg uppercase leading-tight text-foreground/80">
+                <p className="text-xs sm:text-sm font-montserrat font-medium max-w-full lg:max-w-md uppercase leading-tight text-foreground/80">
                   From brand strategy to digital execution, we craft comprehensive solutions 
                   that elevate your business and connect authentically with your audience.
                 </p>

@@ -1,5 +1,5 @@
-'use client';
-
+"use client";
+import Image from "next/image";
 import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -25,7 +25,7 @@ export default function Footer() {
           scale: 0.5,
           rotation: -15,
           transformOrigin: "center bottom",
-          filter: "blur(10px)"
+          filter: "blur(10px)",
         });
 
         gsap.to(heyRef.current, {
@@ -38,7 +38,7 @@ export default function Footer() {
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
           },
           onComplete: () => {
             // Add a subtle pulse after the main animation
@@ -48,10 +48,10 @@ export default function Footer() {
                 duration: 0.3,
                 ease: "power2.out",
                 yoyo: true,
-                repeat: 1
+                repeat: 1,
               });
             }
-          }
+          },
         });
       }
 
@@ -60,7 +60,7 @@ export default function Footer() {
         ScrollAnimations.fadeUp(subheadingRef.current, {
           duration: 1.0,
           delay: 0.3,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
 
@@ -69,7 +69,7 @@ export default function Footer() {
         ScrollAnimations.scaleReveal(ctaRef.current, {
           duration: 1.2,
           delay: 0.6,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
 
@@ -78,7 +78,7 @@ export default function Footer() {
         ScrollAnimations.slideInLeft(logoRef.current, {
           duration: 0.8,
           delay: 0.8,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
 
@@ -86,7 +86,7 @@ export default function Footer() {
         ScrollAnimations.fadeUp(navRef.current, {
           duration: 0.8,
           delay: 1.0,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
 
@@ -94,7 +94,7 @@ export default function Footer() {
         ScrollAnimations.slideInRight(socialRef.current, {
           duration: 0.8,
           delay: 1.2,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
 
@@ -103,102 +103,128 @@ export default function Footer() {
         ScrollAnimations.textReveal(copyrightRef.current, {
           duration: 0.6,
           delay: 1.4,
-          start: "top 85%"
+          start: "top 85%",
         });
       }
-
     }, footerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-black text-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        
+    <footer ref={footerRef} className=" text-foreground dark:text-beige px-4 md:px-6 lg:px-8  ">
+      <div className=" mx-auto ">
         {/* Large Typography Section */}
-        <div className="mb-16">
-          <h1 
-            ref={heyRef}
-            className="text-[clamp(4rem,12vw,12rem)] font-baskerville font-light leading-[0.85] tracking-tight italic mb-2"
-          >
-            hey!
-          </h1>
-          <h2 
+        <div className="mb-16 ">
+          <h2
             ref={subheadingRef}
-            className="text-[clamp(2rem,6vw,6rem)] font-montserrat font-light leading-[0.9] tracking-tight mt-8"
+            className="text-[clamp(2rem,6vw,6rem)] font-montserrat font-light leading-[0.9] tracking-tight mt-8 uppercase"
           >
-            Let's start something<br />
+            Let's start something
+            <br />
             great together
           </h2>
         </div>
 
         {/* CTA Button */}
-        <div ref={ctaRef} className="mb-20">
-          <ProfessionalButton 
-            variant="professional" 
-            size="xl"
-            className="bg-white text-black hover:bg-lime-400 hover:text-black font-montserrat font-medium px-12 py-4 text-lg uppercase tracking-wider"
-            magneticStrength={30}
-            hoverScale={1.04}
-          >
-            Let's Collaborate
-          </ProfessionalButton>
-        </div>
+        <div ref={ctaRef} className="mb-20"></div>
 
         {/* Footer Navigation */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          
           {/* Logo */}
           <div ref={logoRef}>
-            <h3 className="text-2xl font-baskerville font-bold">
-              MARQUET
-              <br />
-              <span className="text-lg font-montserrat font-light tracking-[0.2em] text-gray-400">
-                MEDIA
-              </span>
-            </h3>
+            <ProfessionalButton
+              variant="professional"
+              size="xl"
+              className=" font-montserrat font-medium px-12 py-4 text-lg uppercase tracking-wider"
+              magneticStrength={30}
+              hoverScale={1.04}
+            >
+              Let's Collaborate
+            </ProfessionalButton>
           </div>
 
           {/* Navigation Links */}
           <div ref={navRef} className="flex flex-wrap gap-6 md:gap-8">
-            <a href="#home" className="font-montserrat text-gray-300 hover:text-white transition-colors text-sm">
+            <a
+              href="#home"
+              className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
+            >
               Home
             </a>
-            <a href="#about" className="font-montserrat text-gray-300 hover:text-white transition-colors text-sm">
+            <a
+              href="#about"
+              className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
+            >
               About
             </a>
-            <a href="#portfolio" className="font-montserrat text-gray-300 hover:text-white transition-colors text-sm">
+            <a
+              href="#portfolio"
+              className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
+            >
               Portfolio
             </a>
-            <a href="#services" className="font-montserrat text-gray-300 hover:text-white transition-colors text-sm">
+            <a
+              href="#services"
+              className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
+            >
               Services
             </a>
-            <a href="#contact" className="font-montserrat text-gray-300 hover:text-white transition-colors text-sm">
+            <a
+              href="#contact"
+              className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
+            >
               Contact
             </a>
           </div>
 
           {/* Social Media Links */}
-          <div ref={socialRef} className="flex space-x-3">
-            <a href="#" className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center hover:bg-lime-400 hover:scale-110 transition-all duration-300 group border border-gray-800 hover:border-lime-400">
-              <Instagram className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors duration-300" />
-            </a>
-            <a href="#" className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center hover:bg-lime-400 hover:scale-110 transition-all duration-300 group border border-gray-800 hover:border-lime-400">
-              <Twitter className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors duration-300" />
-            </a>
-            <a href="#" className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center hover:bg-lime-400 hover:scale-110 transition-all duration-300 group border border-gray-800 hover:border-lime-400">
-              <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors duration-300" />
-            </a>
-            <a href="#" className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center hover:bg-lime-400 hover:scale-110 transition-all duration-300 group border border-gray-800 hover:border-lime-400">
-              <Mail className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors duration-300" />
-            </a>
-          </div>
+            <div ref={socialRef} className="flex space-x-3">
+              <a
+                href="#"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
+              >
+                <Instagram className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
+              </a>
+              <a
+                href="#"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
+              >
+                <Twitter className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
+              </a>
+              <a
+                href="#"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
+              >
+                <Linkedin className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
+              </a>
+              <a
+                href="#"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
+              >
+                <Mail className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
+              </a>
+            </div>
+          
         </div>
-
+{/* MARQUET - Full Width */}
+          <div ref={logoRef} className="w-full">
+            <Image
+              src="/MARQUET.svg"
+              alt="Marquet"
+              width={0}
+              height={0}
+              className="w-full h-auto mt-24 svg-logo"
+              priority
+            />
+          </div>
         {/* Bottom Copyright */}
-        <div ref={copyrightRef} className="border-t border-gray-800 pt-6 mt-12 text-center">
-          <p className="font-montserrat text-gray-500 text-sm">
+        <div
+          ref={copyrightRef}
+          className="border-t border-gray-800  mt-12 text-center"
+        >
+          
+          <p className="font-montserrat.text-foreground text-sm my-8">
             © 2025 Marquet Media. All rights reserved.
           </p>
         </div>

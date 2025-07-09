@@ -298,26 +298,30 @@ const portfolioReels = [
     description: 'HIGH-IMPACT CONTENT THAT DRIVES ENGAGEMENT AND CONVERSIONS.',
     category: 'MARKETING',
   },
-  {
-    id: 8,
-    videoSrc: '/reel-4.mp4',
-    instagramUrl: 'https://www.instagram.com/reel/DIjD37aB0_s/',
-    title: 'DIGITAL CAMPAIGNS',
-    description: 'COMPREHENSIVE DIGITAL MARKETING SOLUTIONS FOR GROWTH.',
-    category: 'MARKETING',
-  },
 ];
 
-// Real client logos data
+// Portfolio client logos data
 const clientLogos = [
-  { name: 'MidFunnel', logo: '/client-1.png' },
-  { name: 'Achieve', logo: '/client-2.png' },
-  { name: 'Momentum', logo: '/client-3.webp' },
-  { name: 'Tangent', logo: '/client-1.png' },
-  { name: 'Utility', logo: '/client-2.png' },
-  { name: 'SuperIntelligent', logo: '/client-3.webp' },
-  { name: 'Creative Agency', logo: '/client-1.png' },
-  { name: 'Brand House', logo: '/client-2.png' },
+  { name: 'Client 1', logo: '/protfolio_logo (1)/1.png' },
+  { name: 'Client 2', logo: '/protfolio_logo (1)/Frame 2.png' },
+  { name: 'Client 3', logo: '/protfolio_logo (1)/Frame 3.png' },
+  { name: 'Client 4', logo: '/protfolio_logo (1)/Frame 4.png' },
+  { name: 'Client 5', logo: '/protfolio_logo (1)/Frame 5.png' },
+  { name: 'Client 6', logo: '/protfolio_logo (1)/Frame 6.png' },
+  { name: 'Client 7', logo: '/protfolio_logo (1)/Frame 7.png' },
+  { name: 'Client 8', logo: '/protfolio_logo (1)/Frame 8.png' },
+  { name: 'Client 9', logo: '/protfolio_logo (1)/Frame 9.png' },
+  { name: 'Client 10', logo: '/protfolio_logo (1)/Frame 10.png' },
+  { name: 'Client 11', logo: '/protfolio_logo (1)/Frame 11.png' },
+  { name: 'Client 12', logo: '/protfolio_logo (1)/Frame 12.png' },
+  { name: 'Client 13', logo: '/protfolio_logo (1)/Frame 13.png' },
+  { name: 'Client 14', logo: '/protfolio_logo (1)/Frame 14.png' },
+  { name: 'Client 15', logo: '/protfolio_logo (1)/Frame 15.png' },
+  { name: 'Client 16', logo: '/protfolio_logo (1)/Frame 16.png' },
+  { name: 'Client 17', logo: '/protfolio_logo (1)/Frame 17.png' },
+  { name: 'Client 18', logo: '/protfolio_logo (1)/Frame 18.png' },
+  { name: 'Client 19', logo: '/protfolio_logo (1)/Frame 19.png' },
+  { name: 'Client 20', logo: '/protfolio_logo (1)/Frame 20.png' },
 ];
 
 // Behind the Scenes videos data
@@ -397,17 +401,17 @@ const DualRowLogoGrid = () => {
   const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => (
     <div 
       className="group relative overflow-hidden border-r border-t border-b border-border/40 hover:bg-foreground/5 transition-all duration-500 flex-shrink-0"
-      style={{ width: '200px', height: '120px' }}
+      style={{ width: '250px', height: '150px' }}
     >
-      <div className="p-6 h-full flex items-center justify-center relative">
+      <div className="p-8 h-full flex items-center justify-center relative">
         {/* Logo */}
         <div className="flex items-center justify-center">
           <Image
             src={client.logo}
             alt={client.name}
-            width={120}
-            height={50}
-            className="h-10 w-auto object-contain transition-all duration-500 transform group-hover:scale-110 
+            width={280}
+            height={280}
+            className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 
             grayscale dark:grayscale-0
             group-hover:opacity-100"
           />
@@ -423,29 +427,29 @@ const DualRowLogoGrid = () => {
 
   return (
     <div className="w-full pb-12 space-y-0">
-      {/* Top Row - Scrolling Left */}
+      {/* Top Row - Scrolling Left - First 10 logos */}
       <div className="overflow-hidden">
         <div ref={topRowRef} className="flex">
-          {/* First set */}
-          {clientLogos.map((client, index) => (
+          {/* First set - first 10 logos */}
+          {clientLogos.slice(0, 10).map((client, index) => (
             <LogoBox key={`top-first-${index}`} client={client} index={index} />
           ))}
           {/* Duplicate for seamless loop */}
-          {clientLogos.map((client, index) => (
+          {clientLogos.slice(0, 10).map((client, index) => (
             <LogoBox key={`top-second-${index}`} client={client} index={index} />
           ))}
         </div>
       </div>
 
-      {/* Bottom Row - Scrolling Right */}
+      {/* Bottom Row - Scrolling Right - Last 10 logos */}
       <div className="overflow-hidden">
         <div ref={bottomRowRef} className="flex">
-          {/* First set - reversed order for variety */}
-          {[...clientLogos].reverse().map((client, index) => (
+          {/* First set - last 10 logos */}
+          {clientLogos.slice(10, 20).map((client, index) => (
             <LogoBox key={`bottom-first-${index}`} client={client} index={index} />
           ))}
           {/* Duplicate for seamless loop */}
-          {[...clientLogos].reverse().map((client, index) => (
+          {clientLogos.slice(10, 20).map((client, index) => (
             <LogoBox key={`bottom-second-${index}`} client={client} index={index} />
           ))}
         </div>
@@ -457,8 +461,8 @@ const DualRowLogoGrid = () => {
   );
 };
 
-// Cinematic BTS Video Component
-const CinematicBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: number }) => {
+// Simple BTS Video Component
+const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -497,45 +501,14 @@ const CinematicBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index:
     };
   }, []);
 
-  const cardVariants = [
-    "w-72 h-96", // Tall
-    "w-80 h-64", // Wide
-    "w-64 h-80", // Portrait
-    "w-96 h-72", // Landscape
-  ];
-
-  const rotationVariants = [
-    "hover:rotate-2",
-    "hover:-rotate-1",
-    "hover:rotate-1",
-    "hover:-rotate-2",
-  ];
-
   return (
     <div 
-      className={`
-        flex-shrink-0 ${cardVariants[index % 4]} 
-        bg-foreground overflow-hidden group 
-        transition-all duration-700 
-        ${rotationVariants[index % 4]}
-        hover:scale-105 hover:z-10
-        shadow-2xl hover:shadow-4xl
-        border-2 border-background/10 hover:border-background/30
-        relative
-      `}
-      style={{
-        clipPath: index % 3 === 0 ? 'polygon(0 0, 100% 0, 95% 100%, 0 100%)' : 
-                  index % 3 === 1 ? 'polygon(5% 0, 100% 0, 100% 100%, 0 100%)' :
-                  'none'
-      }}
+      className="flex-shrink-0 w-64 h-96 bg-background overflow-hidden group transition-all duration-500 hover:scale-105 border border-border/20 relative"
     >
-      {/* Film grain overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-background/5 to-transparent opacity-20 pointer-events-none z-10"></div>
-      
       {/* Video */}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className="w-full h-full object-cover"
         loop
         muted
         playsInline
@@ -545,95 +518,44 @@ const CinematicBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index:
         <source src={video.videoSrc} type="video/mp4" />
       </video>
       
-      {/* Cinematic overlay with film bars */}
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-      
-      {/* Top film bar */}
-      <div className="absolute top-0 left-0 right-0 h-8 bg-foreground/80 border-b border-background/20"></div>
-      
-      {/* Bottom film bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-foreground/80 border-t border-background/20"></div>
-      
-      {/* Content with cinematic typography */}
-      <div className="absolute inset-0 flex flex-col justify-between p-6 text-background opacity-0 group-hover:opacity-100 transition-all duration-500">
-        
-        {/* Top content */}
-        <div className="mt-6">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-mono tracking-wider uppercase text-background/80">
-              REC
-            </span>
-          </div>
-          <div className="text-xs font-mono text-background/60 tracking-wider">
-            {String(index + 1).padStart(2, '0')}/08
-          </div>
-        </div>
-
-        {/* Bottom content */}
-        <div className="mb-6">
-          <h4 className="text-lg font-baskerville font-medium mb-2 leading-tight">
-            {video.title}
-          </h4>
-          <p className="text-sm font-montserrat text-background/80 leading-relaxed mb-3">
-            {video.description}
-          </p>
-          <div className="flex items-center gap-2">
-            <div className="w-full h-px bg-background/30"></div>
-            <span className="text-xs font-mono text-background/60 whitespace-nowrap">
-              BTS
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Film perforations */}
-      <div className="absolute left-0 top-0 bottom-0 w-4 bg-foreground/40 border-r border-background/20">
-        <div className="flex flex-col h-full justify-evenly items-center py-8">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-2 h-2 bg-background/30 rounded-sm"></div>
-          ))}
-        </div>
-      </div>
-
-      {/* Corner frame number */}
-      <div className="absolute top-2 right-2 bg-foreground/80 px-2 py-1 text-xs font-mono text-background/80 border border-background/20">
-        #{String(index + 1).padStart(3, '0')}
+      {/* Simple recording indicator */}
+      <div className="absolute top-4 left-4 flex items-center gap-2">
+        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+        <span className="text-xs font-mono tracking-wider uppercase text-white/90 bg-black/40 px-2 py-1 backdrop-blur-sm">
+          REC
+        </span>
       </div>
     </div>
   );
 };
 
-// Cinematic BTS Scroll Component
-const CinematicBTSScroll = () => {
+// Simple BTS Scroll Component
+const SimpleBTSScroll = () => {
   return (
     <div className="relative">
-      {/* Film strip background */}
-      <div className="absolute inset-0 pointer-events-none"></div>
-      
       {/* Scrolling container */}
       <div className="overflow-hidden py-8">
         <div 
-          className="flex gap-8 animate-scroll-smooth hover:pause-animation"
+          className="flex gap-6 animate-scroll-smooth hover:pause-animation"
           style={{
-            animation: 'scroll-cinematic 15s linear infinite',
+            animation: 'scroll-simple 20s linear infinite',
             width: 'fit-content'
           }}
         >
           {/* First set */}
           {btsVideos.map((video, index) => (
-            <CinematicBTSCard key={`first-${video.id}`} video={video} index={index} />
+            <SimpleBTSCard key={`first-${video.id}`} video={video} index={index} />
           ))}
           {/* Duplicate for seamless loop */}
           {btsVideos.map((video, index) => (
-            <CinematicBTSCard key={`second-${video.id}`} video={video} index={index} />
+            <SimpleBTSCard key={`second-${video.id}`} video={video} index={index} />
           ))}
         </div>
       </div>
 
-      {/* CSS for cinematic scroll animation */}
+      {/* CSS for simple scroll animation */}
       <style jsx>{`
-        @keyframes scroll-cinematic {
+        @keyframes scroll-simple {
           0% {
             transform: translateX(0);
           }
@@ -643,7 +565,7 @@ const CinematicBTSScroll = () => {
         }
         
         .animate-scroll-smooth {
-          animation: scroll-cinematic 25s linear infinite;
+          animation: scroll-simple 20s linear infinite;
         }
         
         .animate-scroll-smooth:hover {
@@ -866,29 +788,66 @@ export default function PortfolioSection() {
         </div>
 
 
-        {/* Creative Portfolio Layout */}
+        {/* Modern Portfolio Layout */}
         <div className="mb-32 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           
-          {/* Pinterest-style Masonry Grid */}
-          <div ref={portfolioGridRef} className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
+          {/* Responsive Grid with Gaps */}
+          <div ref={portfolioGridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             
-            {/* Display all 8 videos with Pinterest-style varying heights */}
+            {/* Display all 8 videos plus featured section */}
             {filteredReels.map((reel, index) => {
-              // Define different heights for Pinterest effect
-              const heights = [
-                'h-80',   // Short
-                'h-96',   // Medium
-                'h-[500px]', // Tall
-                'h-72',   // Extra short
-                'h-[450px]', // Medium-tall
-                'h-88',   // Medium-short
-                'h-[520px]', // Extra tall
-                'h-92'    // Medium
-              ];
+              // For featured video (index 0), create a subdivided layout
+              if (index === 0) {
+                return (
+                  <div 
+                    key={reel.id} 
+                    className="portfolio-item relative group col-span-2 row-span-2 border border-border/10 overflow-hidden"
+                  >
+                    {/* Internal subdivision: 2 rows within the featured area */}
+                    <div className="w-full h-full flex flex-col gap-2">
+                      {/* Top section - Featured Video */}
+                      <div className="flex-1 overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md  relative">
+                        <ReelVideoPlayer
+                          videoSrc={reel.videoSrc}
+                          title={reel.title}
+                          description={reel.description}
+                          category={reel.category}
+                          instagramUrl={reel.instagramUrl}
+                          height="100%"
+                        />
+                        
+                        {/* Featured badge */}
+                      
+                      </div>
+                      
+                      {/* Bottom section - Text Tile */}
+                      <div className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter my-4 ">
+                        The featured area now efficiently uses its allocated space with an elegant internal subdivision, maintaining the grid structure while providing both the prominent video display and the creative excellence messaging in a cohesive unit.
+                      </div>
+                    </div>
+                    
+                    {/* Corner accents for the entire featured container */}
+                    <div className="absolute top-0 left-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-white/40"></div>
+                    </div>
+                    
+                    <div className="absolute bottom-0 right-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-white/40"></div>
+                    </div>
+                    
+                    {/* Subtle hover effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 via-transparent to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none "></div>
+                  </div>
+                );
+              }
               
+              // Standard videos layout for all other videos
               return (
-                <div key={reel.id} className="portfolio-item relative group break-inside-avoid mb-4 md:mb-6">
-                  <div className={`w-full overflow-hidden bg-muted/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-[1.02] border border-border ${heights[index % heights.length]}`}>
+                <div 
+                  key={reel.id} 
+                  className="portfolio-item relative group border border-border/10 -lg overflow-hidden"
+                >
+                  <div className="w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md">
                     <ReelVideoPlayer
                       videoSrc={reel.videoSrc}
                       title={reel.title}
@@ -898,15 +857,22 @@ export default function PortfolioSection() {
                       height="100%"
                     />
                   </div>
-                  {/* Featured tag for first video */}
-                  {index === 0 && (
-                    <div className="absolute -top-3 -right-3 bg-foreground text-background px-4 py-2 text-xs font-montserrat font-bold tracking-wider z-10">
-                      FEATURED
-                    </div>
-                  )}
+                  
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-white/40"></div>
+                  </div>
+                  
+                  <div className="absolute bottom-0 right-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-white/40"></div>
+                  </div>
+                  
+                  {/* Subtle hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 via-transparent to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
               );
             })}
+
 
           </div>
         </div>
@@ -922,9 +888,9 @@ export default function PortfolioSection() {
             </p>
           </div>
 
-          {/* Cinematic BTS Experience */}
+          {/* Simple BTS Experience */}
           <div ref={btsScrollRef} className="max-w-full mx-auto px-4 md:px-6 lg:px-8">
-            <CinematicBTSScroll />
+            <SimpleBTSScroll />
           </div>
         </div>
 
