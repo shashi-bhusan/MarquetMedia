@@ -1,8 +1,7 @@
 'use client';
 
 import Header from "@/components/header";
-import HeroSection from "@/components/section/hero-section";
-
+import HeroSection from "@/components/section/hero-section";import TestimonialSection from "@/components/section/testimonial";
 import CustomCursor from "@/components/CustomCursor";
 import AboutSection from "@/components/section/about-section";
 import PortfolioSection from "@/components/section/portfolio section";
@@ -23,6 +22,7 @@ export default function Home() {
          <AboutSection />
          <Services></Services>
          <PortfolioSection />
+         <TestimonialSection></TestimonialSection>
          <Footer></Footer>
         </main>
       </div>
