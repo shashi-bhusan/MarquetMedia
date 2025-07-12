@@ -78,14 +78,14 @@ export default function HeroSection() {
                 {/* First Text Grid */}
                 <div className="space-y-2">
                   <p className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
-                    Elevating brands with bespoke creative solutions and data-driven marketing campaigns.
+                    Where strategy meets subtle storytelling
                   </p>
                 </div>
 
                 {/* Second Text Grid */}
                 <div className="space-y-2">
                   <p className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
-                    UNLEASHING BRAND POTENTIAL WITH CREATIVE CAMPAIGNS, TARGETED STRATEGIES & DATA-DRIVEN INSIGHTS.
+                    Elevating brands across Jharkhand and East India through thoughtful marketing
                   </p>
                 </div>
 
@@ -104,7 +104,7 @@ export default function HeroSection() {
                       }
                     }}
                   >
-                    Let's Collaborate
+                    Start A Project
                   </ProfessionalButton>
                 </div>
 
@@ -112,7 +112,7 @@ export default function HeroSection() {
                 <div className="flex justify-end items-start">
                   <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
                     <svg 
-                      className="w-6 h-6 md:w-8 md:h-8 text-foreground" 
+                      className="w-6 h-6 md:w-8 rotate-90 md:h-8 text-foreground" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"

@@ -41,25 +41,25 @@ export default function AboutSection() {
     }
   }, []);
   return (
-    <section className="min-h-screen bg-cream dark:bg-background text-foreground px-4 md:px-6 lg:px-8 py-40" id="about">
+    <section className="min-h-screen bg-cream dark:bg-background text-foreground px-4 md:px-6 lg:px-8 pt-40" id="about">
       <div className="flex flex-col items-center-safe mx-auto">
         {/* Main Heading */}
         <div className="text-left flex items-center md:text-center mb-16">
             <div className="">
             <h1 ref={headingRef} className="text-3xl text-wrap sm:text-4xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-foreground leading-tighter mb-8  text-left">
-              <span className='w-48'>&nbsp;</span> BORN IN RANCHI, MARQUET MEDIA IS A <span className="italic font-baskerville tracking-tighter">full-stack creative media house</span> DESIGNED FOR BRANDS THAT <em className="italic font-baskerville tracking-tighter">want substance</em> OVER THE NOISE.
+              <span className='w-48'>&nbsp;</span> BORN IN RANCHI, MARQUET MEDIA IS A <span className="italic font-baskerville tracking-tighter">full-stack creative media house</span> DESIGNED FOR BRANDS THAT <em className="italic font-baskerville tracking-tighter">want substance</em> OVER NOISE
             </h1>
              <div ref={lineRef} className="w-full h-px bg-border mb-8"></div>
           </div>
         </div>
 
         {/* Main Content Grid */}
-        <div ref={contentRef} className="flex w-full flex-col md:flex-row gap-8 md:gap-16 items-stretch">
+        <div ref={contentRef} className="flex w-full  flex-col md:flex-row gap-8 md:gap-16 items-stretch">
           {/* Left Side Content (originally right) */}
           <div className="animate-section flex-1 ml-24 flex flex-col ">
             <div>
-                <h2 className="text-lg font-baskerville  font-medium text-foreground mb-4  ">
-                Crafting authentic brand narratives that connect deeply with audiences 
+                <h2 className="text-lg font-baskerville max-w-xl  font-medium text-foreground mb-4  ">
+                We combine strategy, content, and culture to craft campaigns that quietly leave a mark
                 </h2>
               
             </div>
@@ -83,30 +83,22 @@ export default function AboutSection() {
           <div className="animate-section flex-1 space-y-12 mr-24 max-w-lg">
             {/* Vision */}
             <div>
-              <h3 className="text-xs mb-2 font-baskerville font-medium text-foreground/60 tracking-wider">
-                VISION
+              <h3 className="text-xs mb-2 font-baskerville uppercase font-medium text-foreground/60 tracking-wider">
+                Who We Are
               </h3>
          
               <p className="text-muted-foreground font-montserrat font-medium text-sm leading-tight">
-                TO BE THE LEADING MARKETING MEDIA HOUSE THAT EMPOWERS BRANDS 
-                WITH INNOVATIVE GRAPHIC DESIGN, STRATEGIC INFLUENCER MARKETING, 
-                CUTTING-EDGE WEB DEVELOPMENT, AND CREATIVE CONTENT THAT TURNS 
-                IDEAS INTO MEMORABLE EXPERIENCES AND DRIVING MEASURABLE GROWTH 
-                IN A DYNAMIC DIGITAL LANDSCAPE.
+                We’re a team of storytellers, strategists, and creators rooted in Ranchi, serving the evolving brands of Jharkhand and East India. We believe that good marketing isn’t about shouting the loudest—it’s about saying the right thing, in the right way.
               </p>
             </div>
 
             {/* Mission */}
             <div>
-              <h3 className="text-xs mb-2 font-baskerville font-medium text-foreground/60 tracking-wider">
-                MISSION
+              <h3 className="text-xs mb-2 font-baskerville uppercase font-medium text-foreground/60 tracking-wider">
+                Vision
               </h3>
               <p className="text-muted-foreground font-montserrat text-sm font-medium leading-tight">
-                OUR MISSION IS TO DELIVER CREATIVE, DATA-DRIVEN MARKETING SOLUTIONS 
-                THROUGH EXCEPTIONAL GRAPHIC DESIGN, TARGETED INFLUENCER 
-                COLLABORATIONS, INNOVATIVE WEB DEVELOPMENT, AND CONTENT AIM TO 
-                BUILD STRONG BRAND IDENTITIES, AMPLIFY REACH, AND FOSTER 
-                SUSTAINABLE GROWTH FOR OUR CLIENTS.
+                To become East India’s most trusted, strategic, and quietly powerful marketing agency
               </p>
             </div>
           </div>

@@ -1,7 +1,19 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useScrollAnimations, ScrollAnimations } from '@/components/ScrollAnimations';
+import Image from 'next/image';
+
+// Client logo mapping - explicit mapping provided by client
+const clientLogoMapping = {
+  "Mocha Cafe & Bar": { lightLogo: '/protfolio_logo_light/Frame 3.png', darkLogo: '/protfolio_logo_dark/Frame 3.png' },
+  "Anardana": { lightLogo: '/protfolio_logo_light/Frame 8.png', darkLogo: '/protfolio_logo_dark/Frame 8.png' },
+  "Swarnabhumi": { lightLogo: '/protfolio_logo_light/Frame 11.png', darkLogo: '/protfolio_logo_dark/Frame 11.png' },
+  "Engine": { lightLogo: '/protfolio_logo_light/Frame 15.png', darkLogo: '/protfolio_logo_dark/Frame 15.png' },
+  "Jerry Land": { lightLogo: '/protfolio_logo_light/1.png', darkLogo: '/protfolio_logo_dark/1.png' },
+  "Minu Enhance Developers": { lightLogo: '/protfolio_logo_light/Frame 9.png', darkLogo: '/protfolio_logo_dark/Frame 9.png' },
+  "FirstCry.com": { lightLogo: '/protfolio_logo_light/Frame 2.png', darkLogo: '/protfolio_logo_dark/Frame 2.png' },
+};
 
 // Testimonial data from the provided content table
 const testimonials = [
@@ -30,17 +42,101 @@ const testimonials = [
     brand: "Jerry Land",
     review: "From the very beginning of our journey, Marquet Media has been a true 360° partner for JerryLand. From launch campaigns to rebranding phases, they've consistently delivered standout strategies, storytelling, and execution. Their team thinks ahead, moves fast, and most importantly — they understand the brand and what it stands for. Thanks to them, we've built a strong presence and continue to grow with purpose. They know what they're doing, and it shows."
   },
+  // {
+  //   number: "06",
+  //   brand: "Minu Enhance Developers",
+  //   review: "Marquet Media has transformed the way we approach digital marketing for Minu Enhance Developers. Their data-driven strategies, creative execution, and consistent optimization helped us generate not just leads, but quality leads — directly impacting our ROI. The team truly understands the nuances of real estate marketing and crafts campaigns that speak directly to our target audience. We've seen a noticeable uplift in both enquiries and conversions. They're proactive, passionate, and deliver results — exactly the kind of partner every brand needs."
+  // },
   {
     number: "06",
-    brand: "Minu Enhance Developers",
-    review: "Marquet Media has transformed the way we approach digital marketing for Minu Enhance Developers. Their data-driven strategies, creative execution, and consistent optimization helped us generate not just leads, but quality leads — directly impacting our ROI. The team truly understands the nuances of real estate marketing and crafts campaigns that speak directly to our target audience. We've seen a noticeable uplift in both enquiries and conversions. They're proactive, passionate, and deliver results — exactly the kind of partner every brand needs."
-  },
-  {
-    number: "07",
     brand: "FirstCry.com",
     review: "Working with Marquet Media has been a breath of fresh air. They are always ahead of the curve — constantly tapping into the latest trends, moments, and formats that connect with our audience. Their UGC-led approach brought authenticity to our campaigns and drove outstanding results — from increased awareness to real, measurable footfall across locations. The team's ability to blend creativity with performance is unmatched. We couldn't have asked for a better digital partner!"
   }
 ];
+
+// Client Logo Component with theme support
+const ClientLogo = ({ brandName }: { brandName: string }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Enhanced dark mode detection to match header component logic
+    const checkDarkMode = () => {
+      // Check localStorage first (matches header component logic)
+      const storedDarkMode = localStorage.getItem("darkMode");
+      
+      // If localStorage has a value, use it
+      if (storedDarkMode !== null) {
+        const isDark = storedDarkMode === "true";
+        setIsDarkMode(isDark);
+        return;
+      }
+      
+      // Fallback: check if dark class is present on document element
+      const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
+      
+      // If no explicit class, fall back to system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Final determination
+      const isDark = hasExplicitDarkClass || systemPrefersDark;
+      setIsDarkMode(isDark);
+    };
+
+    // Initial check
+    checkDarkMode();
+
+    // Listen for theme changes on document element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          checkDarkMode();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+
+    // Listen for localStorage changes (for theme toggle)
+    const handleStorageChange = () => {
+      checkDarkMode();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkDarkMode);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('storage', handleStorageChange);
+      mediaQuery.removeEventListener('change', checkDarkMode);
+    };
+  }, []);
+
+  const logoMapping = clientLogoMapping[brandName as keyof typeof clientLogoMapping];
+  
+  if (!logoMapping) {
+    return null; // Return null if no logo mapping found
+  }
+
+  const logoSrc = isDarkMode ? logoMapping.darkLogo : logoMapping.lightLogo;
+
+  return (
+    <div className="flex items-center justify-center h-12 w-16">
+      <Image
+        src={logoSrc}
+        alt={`${brandName} logo`}
+        width={64}
+        height={48}
+        className="h-full w-auto max-w-full object-contain transition-all duration-300"
+      />
+    </div>
+  );
+};
 
 export default function TestimonialSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -96,54 +192,51 @@ export default function TestimonialSection() {
 
         {/* Main Content Grid */}
         <div className="w-full px-16 md:px-24 lg:px-32 max-w-full flex flex-col gap-8 md:gap-16 items-stretch">
-          {/* Grid of Testimonial Tiles - 3x3 Grid Layout with 7 testimonials */}
-          <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-0 border-l border-border/90">
+          
+          {/* Grid of Testimonial Tiles - Sharp Line-based Layout */}
+          {/* horizontal line */}
+          
+          <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-border">
             {testimonials.map((testimonial, index) => {
-              // Define special layouts for certain testimonials
-              let gridClass = "";
-              if (index === 0) {
-                // First testimonial spans 2 columns
-                gridClass = "";
-              } else if (index === 5) {
-                // Last testimonial spans 2 columns in bottom row
-                gridClass = "md:row-span-2";
-              } else if (index === 6) {
-                // Fifth testimonial spans 2 rows
-                gridClass = "md:col-span-2";
-              }
-              
               return (
                 <div 
                   key={testimonial.number}
-                  className={`testimonial-tile group relative border-b border-r border-border/90 hover:bg-foreground/5 transition-all duration-300 ${gridClass}`}
+                  className="testimonial-tile group relative border-b border-r border-border hover:bg-foreground/5 transition-all duration-300"
                 >
-                  <div className="p-8 lg:p-10 h-full min-h-[300px] md:min-h-[350px] lg:min-h-[400px] flex flex-col">
+                  <div className="p-8 lg:p-10 h-full min-h-[350px] md:min-h-[400px] lg:min-h-[450px] flex flex-col">
                   
-                  {/* Header with number only */}
-                  <div className="mb-6">
-                    <span className="text-xs font-montserrat text-foreground/30 font-medium tracking-wider uppercase">
-                      {testimonial.number}
-                    </span>
+                  {/* Header with number */}
+                  <div className="mb-4">
+                    <div className="inline-flex items-center justify-center w-8 h-8 bg-foreground/10 dark:bg-foreground/20 rounded-full mb-2">
+                      <span className="text-xs font-montserrat text-foreground/60 font-semibold tracking-wider">
+                        {testimonial.number}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Review Content */}
                   <div className="flex-1 mb-6">
-                    <p className="text-xs md:text-sm font-montserrat text-foreground/80 leading-4 tracking-tighter uppercase group-hover:text-foreground transition-colors duration-300">
-                      {testimonial.review}
+                    <p className="text-sm md:text-base font-montserrat text-foreground/70 leading-relaxed tracking-normal normal-case group-hover:text-foreground/90 transition-colors duration-300">
+                      "{testimonial.review}"
                     </p>
                   </div>
 
-                  {/* Company name at bottom left */}
-                  <div className="mt-auto">
-                    <h3 className="text-xs md:text-sm font-montserrat text-foreground font-medium tracking-tighter uppercase leading-4">
-                      {testimonial.brand}
-                    </h3>
+                  {/* Logo and company name at bottom */}
+                  <div className="mt-auto pt-4 border-t border-border/10">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <ClientLogo brandName={testimonial.brand} />
+                      </div>
+                      <div>
+                        <h3 className="text-sm md:text-base font-montserrat text-foreground font-semibold tracking-normal normal-case leading-tight">
+                          {testimonial.brand}
+                        </h3>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Subtle corner accent */}
-                  <div className="absolute top-0 right-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-foreground/20"></div>
-                  </div>
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"></div>
 
                 </div>
               </div>
@@ -154,8 +247,7 @@ export default function TestimonialSection() {
 
       </div>
 
-      {/* Bottom end-to-end horizontal line - full viewport width */}
-      <div className="w-screen border-t border-border/90 absolute left-0"></div>
+      
     </section>
   );
 }

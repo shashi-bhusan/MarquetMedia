@@ -300,29 +300,59 @@ const portfolioReels = [
   },
 ];
 
-// Portfolio client logos data
-const clientLogos = [
-  { name: 'Client 1', logo: '/protfolio_logo (1)/1.png' },
-  { name: 'Client 2', logo: '/protfolio_logo (1)/Frame 2.png' },
-  { name: 'Client 3', logo: '/protfolio_logo (1)/Frame 3.png' },
-  { name: 'Client 4', logo: '/protfolio_logo (1)/Frame 4.png' },
-  { name: 'Client 5', logo: '/protfolio_logo (1)/Frame 5.png' },
-  { name: 'Client 6', logo: '/protfolio_logo (1)/Frame 6.png' },
-  { name: 'Client 7', logo: '/protfolio_logo (1)/Frame 7.png' },
-  { name: 'Client 8', logo: '/protfolio_logo (1)/Frame 8.png' },
-  { name: 'Client 9', logo: '/protfolio_logo (1)/Frame 9.png' },
-  { name: 'Client 10', logo: '/protfolio_logo (1)/Frame 10.png' },
-  { name: 'Client 11', logo: '/protfolio_logo (1)/Frame 11.png' },
-  { name: 'Client 12', logo: '/protfolio_logo (1)/Frame 12.png' },
-  { name: 'Client 13', logo: '/protfolio_logo (1)/Frame 13.png' },
-  { name: 'Client 14', logo: '/protfolio_logo (1)/Frame 14.png' },
-  { name: 'Client 15', logo: '/protfolio_logo (1)/Frame 15.png' },
-  { name: 'Client 16', logo: '/protfolio_logo (1)/Frame 16.png' },
-  { name: 'Client 17', logo: '/protfolio_logo (1)/Frame 17.png' },
-  { name: 'Client 18', logo: '/protfolio_logo (1)/Frame 18.png' },
-  { name: 'Client 19', logo: '/protfolio_logo (1)/Frame 19.png' },
-  { name: 'Client 20', logo: '/protfolio_logo (1)/Frame 20.png' },
+// Portfolio client logos data with theme support - dynamically generated
+const lightLogos = [
+  '1.png',
+  'Frame 2.png',
+  'Frame 3.png',
+  'Frame 5.png',
+  'Frame 6.png',
+  'Frame 7.png',
+  'Frame 8.png',
+  'Frame 9.png',
+  'Frame 10.png',
+  'Frame 11.png',
+  'Frame 12.png',
+  'Frame 13.png',
+  'Frame 14.png',
+  'Frame 15.png',
+  'Frame 16.png',
+  'Frame 17.png',
+  'Frame 18.png',
+  'Frame 19.png',
+  'Frame 20.png',
+  'Frame 21.png'
 ];
+
+const darkLogos = [
+  '1.png',
+  'Frame 2.png',
+  'Frame 3.png',
+  'Frame 4.png',
+  'Frame 5.png',
+  'Frame 6.png',
+  'Frame 7.png',
+  'Frame 8.png',
+  'Frame 9.png',
+  'Frame 10.png',
+  'Frame 11.png',
+  'Frame 12.png',
+  'Frame 13.png',
+  'Frame 14.png',
+  'Frame 15.png',
+  'Frame 16.png',
+  'Frame 17.png',
+  'Frame 18.png',
+  'Frame 19.png',
+  'Frame 20.png'
+];
+
+// Generate client logos array dynamically
+const clientLogos = lightLogos.map((lightLogo, index) => ({
+  name: `Client ${index + 1}`,
+  lightLogo: `/protfolio_logo_light/${lightLogo}`,
+  darkLogo: `/protfolio_logo_dark/${darkLogos[index] || darkLogos[index % darkLogos.length]}`
+}));
 
 // Behind the Scenes videos data
 const btsVideos = [
@@ -397,33 +427,97 @@ const DualRowLogoGrid = () => {
     };
   }, []);
 
-  // Create logo boxes similar to service section
-  const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => (
-    <div 
-      className="group relative overflow-hidden border-r border-t border-b border-border/40 hover:bg-foreground/5 transition-all duration-500 flex-shrink-0"
-      style={{ width: '250px', height: '150px' }}
-    >
-      <div className="p-8 h-full flex items-center justify-center relative">
-        {/* Logo */}
-        <div className="flex items-center justify-center">
-          <Image
-            src={client.logo}
-            alt={client.name}
-            width={280}
-            height={280}
-            className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 
-            grayscale dark:grayscale-0
-            group-hover:opacity-100"
-          />
-        </div>
+  // Create logo boxes similar to service section with theme support
+  const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => {
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-        {/* Corner accent */}
-        <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-foreground/20"></div>
+    useEffect(() => {
+      // Enhanced dark mode detection to match header component logic
+      const checkDarkMode = () => {
+        // Check localStorage first (matches header component logic)
+        const storedDarkMode = localStorage.getItem("darkMode");
+        
+        // If localStorage has a value, use it
+        if (storedDarkMode !== null) {
+          const isDark = storedDarkMode === "true";
+          setIsDarkMode(isDark);
+          return;
+        }
+        
+        // Fallback: check if dark class is present on document element
+        const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
+        
+        // If no explicit class, fall back to system preference
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Final determination
+        const isDark = hasExplicitDarkClass || systemPrefersDark;
+        setIsDarkMode(isDark);
+      };
+
+      // Initial check
+      checkDarkMode();
+
+      // Listen for theme changes on document element
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            checkDarkMode();
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['class'] 
+      });
+
+      // Listen for localStorage changes (for theme toggle)
+      const handleStorageChange = () => {
+        checkDarkMode();
+      };
+      
+      window.addEventListener('storage', handleStorageChange);
+
+      // Listen for system theme changes
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', checkDarkMode);
+
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('storage', handleStorageChange);
+        mediaQuery.removeEventListener('change', checkDarkMode);
+      };
+    }, []);
+
+    const logoSrc = isDarkMode ? client.darkLogo : client.lightLogo;
+
+    return (
+      <div 
+        className="group relative overflow-hidden border-r border-t border-b border-border/40 hover:bg-foreground/5 transition-all duration-500 flex-shrink-0"
+        style={{ width: '250px', height: '150px' }}
+      >
+        <div className="p-8 h-full flex items-center justify-center relative">
+          {/* Logo */}
+          <div className="flex items-center justify-center">
+            <Image
+              src={logoSrc}
+              alt={client.name}
+              width={280}
+              height={280}
+              className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 
+              group-hover:opacity-100"
+            />
+          </div>
+
+          {/* Corner accent */}
+          <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-foreground/20"></div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="w-full pb-12 space-y-0">
@@ -749,11 +843,8 @@ export default function PortfolioSection() {
             {/* Primary Headline */}
             <h2 ref={titleRef} className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-7xl font-light text-foreground leading-[0.9] sm:leading-[1] mb-8 sm:mb-10 md:mb-12 text-center">
               <span className="block">
-                <span className="font-montserrat">CRAFTING </span>
-                <span className="italic font-baskerville font-normal tracking-tight text-foreground">brands that</span>
-              </span>
-              <span className="block font-montserrat tracking-tight mt-1 sm:mt-2">
-                CAPTIVATE & CONVERT
+                <span className="font-montserrat">OUR WORK </span>
+                <span className="italic font-baskerville font-normal tracking-tight text-foreground">speaks!</span>
               </span>
             </h2>
             
@@ -772,7 +863,7 @@ export default function PortfolioSection() {
                 magneticStrength={30}
                 hoverScale={1.04}
               >
-                Partner with Us
+                start your project
                 <ArrowUpRight className="ml-3 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </ProfessionalButton>
             </div>
@@ -802,11 +893,12 @@ export default function PortfolioSection() {
                   <div 
                     key={reel.id} 
                     className="portfolio-item relative group col-span-2 row-span-2 border border-border/10 overflow-hidden"
+                    style={{ aspectRatio: '9/16' }}
                   >
                     {/* Internal subdivision: 2 rows within the featured area */}
                     <div className="w-full h-full flex flex-col gap-2">
                       {/* Top section - Featured Video */}
-                      <div className="flex-1 overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md  relative">
+                      <div className="flex-1 overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md relative" style={{ aspectRatio: '9/16' }}>
                         <ReelVideoPlayer
                           videoSrc={reel.videoSrc}
                           title={reel.title}
@@ -846,8 +938,9 @@ export default function PortfolioSection() {
                 <div 
                   key={reel.id} 
                   className="portfolio-item relative group border border-border/10 -lg overflow-hidden"
+                  style={{ aspectRatio: '9/16' }}
                 >
-                  <div className="w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md">
+                  <div className="w-full h-full overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md">
                     <ReelVideoPlayer
                       videoSrc={reel.videoSrc}
                       title={reel.title}

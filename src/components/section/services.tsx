@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ProfessionalButton } from "@/components/ui/professional-button";
-import { ArrowRight, Palette, Users, Globe, TrendingUp, Camera, Megaphone } from "lucide-react";
+import { ArrowRight, Palette, Users, Globe, TrendingUp, Camera, Megaphone, Share2, Star, Play, Newspaper, Target, Calendar, Lightbulb, MessageSquare, Smartphone, Code } from "lucide-react";
 import Image from "next/image";
 import { useScrollAnimations, ScrollAnimations } from '@/components/ScrollAnimations';
 
@@ -43,48 +43,75 @@ export default function Services() {
   }, []);
   const services = [
     {
-      icon: Users,
-      title: "influencer marketing",
-      description: "Strategic partnerships with authentic content creators who align with your brand values, driving genuine engagement and measurable results through collaborative campaigns.",
+      icon: Share2,
+      title: "social media management",
+      description: "Strategy, content creation, calendar planning, community management. For brands who want to engage, not just post.",
       illustration: "/illustration/digital-nomad-working-near-beach.svg",
-      size: "large" // For horizontal scroll, we'll use consistent sizes
-    },
-    {
-      icon: Palette,
-      title: "graphic design",
-      description: "Innovative visual identity creation that captures your brand essence, from logo design to comprehensive brand systems that resonate with your target audience.",
-      illustration: "/illustration/designer-working.svg",
       size: "large"
     },
     {
-      icon: Globe,
-      title: "web development",
-      description: "Cutting-edge websites and digital experiences that combine aesthetic excellence with seamless functionality, optimized for performance and user engagement.",
-      illustration: "/illustration/digital-nomad-working-in-airport.svg",
-      size: "large"
-    },
-    {
-      icon: Camera,
-      title: "content creation",
-      description: "Compelling visual and written content that tells your brand story authentically, designed to captivate audiences across all digital platforms.",
+      icon: Play,
+      title: "production & shoots",
+      description: "Lifestyle shoots, product photography, brand reels, campaign visuals. We tell your story through scroll-stopping visuals.",
       illustration: "/illustration/having-fun.svg",
       size: "large"
     },
     {
-      icon: TrendingUp,
-      title: "brand strategy",
-      description: "Data-driven strategic planning that positions your brand for sustainable growth, combining market insights with creative vision for lasting impact.",
+      icon: Users,
+      title: "influencer marketing",
+      description: "Collaborations with local and regional creators. Authentic voices, amplified impact.",
+      illustration: "/illustration/digital-nomad-working-in-airport.svg",
+      size: "large"
+    },
+    {
+      icon: Target,
+      title: "performance campaigns",
+      description: "Meta & Google ads, analytics, lead funnels. Numbers-driven strategies that deliver.",
       illustration: "/illustration/get-a-job-promotion.svg",
       size: "large"
     },
     {
-      icon: Megaphone,
-      title: "digital marketing",
-      description: "Comprehensive digital campaigns that amplify your brand reach through targeted advertising, social media management, and conversion optimization.",
+      icon: Newspaper,
+      title: "media buying",
+      description: "Newspaper ads, hoardings, FM radio placements. Integrated media, locally executed.",
       illustration: "/illustration/financial-literacy.svg",
       size: "large"
     },
-   
+    {
+      icon: Calendar,
+      title: "corporate event management",
+      description: "Brand launches, internal activations, press events. Designed with detail, delivered with polish.",
+      illustration: "/illustration/designer-working.svg",
+      size: "large"
+    },
+    {
+      icon: Lightbulb,
+      title: "brand strategy & consulting",
+      description: "Audits, positioning, brand language, campaign frameworks. For brands that want to get it right from the inside out.",
+      illustration: "/illustration/designer-desk.svg",
+      size: "large"
+    },
+    {
+      icon: MessageSquare,
+      title: "sms & whatsapp blasts",
+      description: "Targeted messaging campaigns for direct customer engagement. Reach your audience where they are most active.",
+      illustration: "/illustration/grow-plants-home-garden.svg",
+      size: "large"
+    },
+    {
+      icon: Smartphone,
+      title: "whatsapp for business",
+      description: "Professional customer communication solutions. Build stronger relationships through instant, personalized interactions.",
+      illustration: "/illustration/digital-nomad-working-near-beach.svg",
+      size: "large"
+    },
+    {
+      icon: Code,
+      title: "website development",
+      description: "Cutting-edge websites and digital experiences that combine aesthetic excellence with seamless functionality, optimized for performance and user engagement.",
+      illustration: "/illustration/digital-nomad-working-in-airport.svg",
+      size: "large"
+    }
   ];
 
   return (
@@ -122,11 +149,12 @@ export default function Services() {
             {/* Left Side - Main Heading */}
             <div className="lg:col-span-7 order-1">
               <h2 className="text-3xl text-wrap sm:text-4xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-foreground leading-tighter  text-left ">
-                CREATIVE 
-                <span className="sm:hidden" />
-                <span className="italic font-baskerville tracking-tighter font-light">solutions</span>
+                OUR
                 <br />
-                THAT WORK
+                <span className="sm:hidden" />
+                <span className="italic font-baskerville tracking-tighter font-light">services</span>
+               
+              
               </h2>
             </div>
 
@@ -134,8 +162,7 @@ export default function Services() {
             <div className="lg:col-span-5 order-2 lg:order-2 flex flex-col justify-center lg:justify-end">
               <div className="space-y-6 lg:space-y-8">
                 <p className="text-xs sm:text-sm font-montserrat font-medium max-w-full lg:max-w-md uppercase leading-tight text-foreground/80">
-                  From brand strategy to digital execution, we craft comprehensive solutions 
-                  that elevate your business and connect authentically with your audience.
+                  We bring clarity to chaos. Whether it’s digital, traditional, or somewhere in between, we partner with you to craft campaigns rooted in insight and executed with intention
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
