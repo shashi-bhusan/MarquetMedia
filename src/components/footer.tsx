@@ -139,6 +139,7 @@ export default function Footer() {
               className=" font-montserrat font-medium px-12 py-4 text-lg uppercase tracking-wider"
               magneticStrength={30}
               hoverScale={1.04}
+              showContactForm={true}
             >
               Let's Collaborate
             </ProfessionalButton>
@@ -221,12 +222,12 @@ export default function Footer() {
         {/* Bottom Copyright */}
         <div
           ref={copyrightRef}
-          className="border-t border-gray-800  mt-12 text-center"
+          className="border-t my-12 text-center"
         >
           
-          <p className="font-montserrat.text-foreground text-sm my-8">
-            © 2025 Marquet Media. All rights reserved.
-          </p>
+            <p className="font-montserrat text-foreground text-sm my-8">
+            © 2025 Marquet Media. All rights reserved. Designed and developed by <a href="https://www.linkedin.com/in/shahid-mollick-763100185/" target="_blank" rel="noopener noreferrer" className="hover:underline">Shahid Mollick</a> and maintained by <a href="https://beenait.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline">BeenaIT Solutions</a>.
+            </p>
         </div>
       </div>
     </footer>

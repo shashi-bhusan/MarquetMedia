@@ -26,7 +26,7 @@ export default function Header() {
     };
 
     const handleSectionChange = () => {
-      const sections = ["home", "about", "services", "portfolio"];
+      const sections = ["home", "about", "services", "portfolio", "testimonials"];
       const scrollPosition = window.scrollY;
       const viewportHeight = window.innerHeight;
       const triggerPoint = scrollPosition + viewportHeight * 0.3; // 30% from top of viewport
@@ -63,9 +63,14 @@ export default function Header() {
         }
       }
 
-      // Additional check: if we're at the very bottom, ensure portfolio is active
+      // Additional check: if we're at the very bottom, ensure testimonials is active if it exists
       if (scrollPosition + viewportHeight >= document.documentElement.scrollHeight - 10) {
-        currentSection = "portfolio";
+        const testimonialsElement = document.getElementById("testimonials");
+        if (testimonialsElement) {
+          currentSection = "testimonials";
+        } else {
+          currentSection = "portfolio";
+        }
       }
 
       // Smooth transition only when the section actually changes
@@ -123,6 +128,7 @@ export default function Header() {
     { id: "about", label: "About" },
     { id: "services", label: "Services" },
     { id: "portfolio", label: "Portfolio" },
+    { id: "testimonials", label: "Testimonials" },
   ];
 
   return (
@@ -207,14 +213,14 @@ export default function Header() {
               </Button>
               
               <ProfessionalButton
-                onClick={() => handleNavClick("portfolio")}
                 variant="professional"
                 size="lg"
                 className="font-montserrat font-medium px-6 py-2 text-sm uppercase tracking-wider"
                 magneticStrength={20}
                 hoverScale={1.03}
+                showContactForm={true}
               >
-                Partner with Us
+                COLLABORATE with Us
               </ProfessionalButton>
             </div>
 
@@ -289,12 +295,13 @@ export default function Header() {
               
               <div className="pt-8">
                 <ProfessionalButton
-                  onClick={() => handleNavClick("portfolio")}
+                  onClick={() => handleNavClick("testimonials")}
                   variant="professional"
                   size="lg"
                   className="font-montserrat font-medium px-8 py-3 text-sm uppercase tracking-wider"
                   magneticStrength={20}
                   hoverScale={1.03}
+                  showContactForm={true}
                 >
                   Let's Collaborate
                 </ProfessionalButton>

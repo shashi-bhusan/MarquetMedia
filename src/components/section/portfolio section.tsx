@@ -244,7 +244,7 @@ const ReelVideoPlayer = ({
 const portfolioReels = [
   {
     id: 1,
-    videoSrc: '/reel-1.mp4',
+    videoSrc: '/reel-5.mp4',
     instagramUrl: 'https://www.instagram.com/reel/DF69CDJhGdo/',
     title: 'BRAND STORYTELLING',
     description: 'CREATIVE NARRATIVE THAT CONNECTS WITH AUDIENCES THROUGH COMPELLING VISUAL STORYTELLING.',
@@ -252,7 +252,7 @@ const portfolioReels = [
   },
   {
     id: 2,
-    videoSrc: '/reel-2.mp4',
+    videoSrc: '/reel-6.mp4',
     instagramUrl: 'https://www.instagram.com/reel/DBJO9AINY6L/',
     title: 'PRODUCT LAUNCH',
     description: 'STRATEGIC CONTENT DESIGNED FOR MAXIMUM ENGAGEMENT AND CONVERSION.',
@@ -282,14 +282,7 @@ const portfolioReels = [
     description: 'DATA-DRIVEN SOCIAL MEDIA CAMPAIGNS THAT BUILD COMMUNITY.',
     category: 'SOCIAL MEDIA',
   },
-  {
-    id: 6,
-    videoSrc: '/reel-2.mp4',
-    instagramUrl: 'https://www.instagram.com/reel/DBJO9AINY6L/',
-    title: 'BRAND IDENTITY',
-    description: 'COMPREHENSIVE VISUAL IDENTITY SYSTEMS THAT DEFINE BRANDS.',
-    category: 'CREATIVE',
-  },
+
   {
     id: 7,
     videoSrc: '/reel-3.mp4',
@@ -362,8 +355,13 @@ const btsVideos = [
   { id: 4, videoSrc: '/bts/IMG_1770.MOV', title: 'Location Scouting', description: 'Finding the perfect backdrop for our content' },
   { id: 5, videoSrc: '/bts/IMG_2538.MOV', title: 'Equipment Setup', description: 'Professional gear for professional results' },
   { id: 6, videoSrc: '/bts/IMG_3287.MOV', title: 'Direction & Guidance', description: 'Guiding talent through the creative process' },
-  { id: 7, videoSrc: '/bts/IMG_3288.MOV', title: 'Final Touches', description: 'Adding the finishing touches to our work' },
-  { id: 8, videoSrc: '/bts/IMG_7721.MOV', title: 'Wrap Up', description: 'Celebrating another successful project' },
+  { id: 7, videoSrc: '/bts/IMG_7721.MOV', title: 'Wrap Up', description: 'Celebrating another successful project' },
+  { id: 8, videoSrc: '/bts/C0442.MP4', title: 'Final Cut', description: 'Bringing everything together in post-production' },
+];
+
+// Behind the Scenes images data
+const btsImages = [
+  { id: 1, imageSrc: '/bts/image.png', title: 'Studio Moments', description: 'Capturing the essence of creativity' },
 ];
 
 // Dual Row Scrolling Logo Grid Component with service box inspiration
@@ -623,8 +621,80 @@ const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: nu
   );
 };
 
+// Simple BTS Image Component with scaling animation
+const SimpleBTSImageCard = ({ image, index }: { image: typeof btsImages[0]; index: number }) => {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const imageElement = imageRef.current;
+    if (!imageElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+          } else {
+            setIsInView(false);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(imageElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={imageRef}
+      className="flex-shrink-0 w-64 h-96 bg-background overflow-hidden group transition-all duration-500 hover:scale-105 border border-border/20 relative"
+    >
+      {/* Image with continuous scaling animation */}
+      <div className="w-full h-full overflow-hidden">
+        <Image
+          src={image.imageSrc}
+          alt={image.title}
+          width={256}
+          height={384}
+          className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-linear ${
+            isInView ? 'scale-110' : 'scale-100'
+          }`}
+        />
+      </div>
+      
+      {/* Photo indicator */}
+      <div className="absolute top-4 left-4 flex items-center gap-2">
+        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+        <span className="text-xs font-mono tracking-wider uppercase text-white/90 bg-black/40 px-2 py-1 backdrop-blur-sm">
+          PHOTO
+        </span>
+      </div>
+
+      {/* Title overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-4 left-4 right-4 text-white">
+          <h4 className="text-sm font-montserrat font-bold uppercase tracking-wider mb-1">{image.title}</h4>
+          <p className="text-xs text-white/80 uppercase tracking-wide">{image.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Simple BTS Scroll Component
 const SimpleBTSScroll = () => {
+  // Combine videos and images for mixed content
+  const allBTSContent = [
+    ...btsVideos.map(video => ({ ...video, type: 'video' as const })),
+    ...btsImages.map(image => ({ ...image, type: 'image' as const }))
+  ];
+
   return (
     <div className="relative">
       {/* Scrolling container */}
@@ -632,17 +702,25 @@ const SimpleBTSScroll = () => {
         <div 
           className="flex gap-6 animate-scroll-smooth hover:pause-animation"
           style={{
-            animation: 'scroll-simple 20s linear infinite',
+            animation: 'scroll-simple 25s linear infinite',
             width: 'fit-content'
           }}
         >
-          {/* First set */}
-          {btsVideos.map((video, index) => (
-            <SimpleBTSCard key={`first-${video.id}`} video={video} index={index} />
+          {/* First set - mixed content */}
+          {allBTSContent.map((content, index) => (
+            content.type === 'video' ? (
+              <SimpleBTSCard key={`first-video-${content.id}`} video={content} index={index} />
+            ) : (
+              <SimpleBTSImageCard key={`first-image-${content.id}`} image={content} index={index} />
+            )
           ))}
           {/* Duplicate for seamless loop */}
-          {btsVideos.map((video, index) => (
-            <SimpleBTSCard key={`second-${video.id}`} video={video} index={index} />
+          {allBTSContent.map((content, index) => (
+            content.type === 'video' ? (
+              <SimpleBTSCard key={`second-video-${content.id}`} video={content} index={index} />
+            ) : (
+              <SimpleBTSImageCard key={`second-image-${content.id}`} image={content} index={index} />
+            )
           ))}
         </div>
       </div>
@@ -659,7 +737,7 @@ const SimpleBTSScroll = () => {
         }
         
         .animate-scroll-smooth {
-          animation: scroll-simple 20s linear infinite;
+          animation: scroll-simple 25s linear infinite;
         }
         
         .animate-scroll-smooth:hover {
@@ -833,7 +911,7 @@ export default function PortfolioSection() {
       <div className="max-w mx-auto px-4 md:px-6 lg:px-8">
         
         {/* Professional Header Section */}
-        <div ref={headerRef} className="relative mb-32 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div ref={headerRef} className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           
           {/* Section Identifier */}
 
@@ -848,25 +926,7 @@ export default function PortfolioSection() {
               </span>
             </h2>
             
-            {/* Professional Description */}
-            <div ref={descriptionRef} className="max-w-3xl mx-auto mb-16">
-              <p className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter mb-4">
-                We deliver creative, data-driven marketing solutions through exceptional design, 
-                strategic influencer partnerships, and innovative business development.
-              </p>
-              
-              {/* Call to Action */}
-              <ProfessionalButton 
-                variant="professional" 
-                size="xl"
-                className="font-montserrat font-medium px-12 py-4 text-lg uppercase tracking-wider"
-                magneticStrength={30}
-                hoverScale={1.04}
-              >
-                start your project
-                <ArrowUpRight className="ml-3 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </ProfessionalButton>
-            </div>
+           
 
 
           </div>
@@ -914,7 +974,18 @@ export default function PortfolioSection() {
                       
                       {/* Bottom section - Text Tile */}
                       <div className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter my-4 ">
-                        The featured area now efficiently uses its allocated space with an elegant internal subdivision, maintaining the grid structure while providing both the prominent video display and the creative excellence messaging in a cohesive unit.
+                         {/* Call to Action */}
+              <ProfessionalButton 
+                variant="professional" 
+                size="xl"
+                className="font-montserrat font-medium mt-6 px-12 py-4 text-lg uppercase tracking-wider"
+                magneticStrength={30}
+                hoverScale={1.04}
+                showContactForm={true}
+              >
+                start your project
+                <ArrowUpRight className="ml-3 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </ProfessionalButton>
                       </div>
                     </div>
                     
@@ -933,11 +1004,45 @@ export default function PortfolioSection() {
                 );
               }
               
+              // For video ID 7, make it span 2 columns
+              if (reel.id === 7) {
+                return (
+                  <div 
+                    key={reel.id} 
+                    className="portfolio-item relative group col-span-2 border border-border/10 overflow-hidden"
+                    style={{ aspectRatio: '18/16' }}
+                  >
+                    <div className="w-full h-full overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md">
+                      <ReelVideoPlayer
+                        videoSrc={reel.videoSrc}
+                        title={reel.title}
+                        description={reel.description}
+                        category={reel.category}
+                        instagramUrl={reel.instagramUrl}
+                        height="100%"
+                      />
+                    </div>
+                    
+                    {/* Corner accents */}
+                    <div className="absolute top-0 left-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-white/40"></div>
+                    </div>
+                    
+                    <div className="absolute bottom-0 right-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-white/40"></div>
+                    </div>
+                    
+                    {/* Subtle hover effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 via-transparent to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                  </div>
+                );
+              }
+              
               // Standard videos layout for all other videos
               return (
                 <div 
                   key={reel.id} 
-                  className="portfolio-item relative group border border-border/10 -lg overflow-hidden"
+                  className="portfolio-item relative group border border-border/10 overflow-hidden"
                   style={{ aspectRatio: '9/16' }}
                 >
                   <div className="w-full h-full overflow-hidden bg-background/50 hover:bg-background/80 transition-all duration-700 hover:scale-[1.02] shadow-sm hover:shadow-xl backdrop-blur-sm group-hover:backdrop-blur-md">
@@ -971,7 +1076,7 @@ export default function PortfolioSection() {
         </div>
 
         {/* Cinematic Behind the Scenes */}
-        <div className="mb-20  py-20">
+        <div className="pt-20">
           <div ref={btsHeaderRef}>
             <h3 className='text-3xl md:text-lg lg:text-3xl font-light font-baskerville text-foreground mb-2 leading-tight text-center lowercase tracking-tighter italic'>
                Behind the Scenes

@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Button, buttonVariants } from './button';
 import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 import type { VariantProps } from 'class-variance-authority';
+import { ContactFormDialog } from './contact-form-dialog';
 
 interface ProfessionalButtonProps extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ interface ProfessionalButtonProps extends React.ComponentProps<"button">, Varian
   hoverScale?: number;
   rippleEffect?: boolean;
   variant?: "professional" | "outline" | "ghost" | "default" | "destructive" | "secondary" | "link" | null | undefined;
+  showContactForm?: boolean; // New prop to enable contact form
 }
 
 export function ProfessionalButton({
@@ -25,10 +27,22 @@ export function ProfessionalButton({
   hoverScale = 1.02,
   rippleEffect = true,
   asChild = false,
+  showContactForm = false,
+  onClick,
   ...props
 }: ProfessionalButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const rippleRef = useRef<HTMLDivElement>(null);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (showContactForm) {
+      e.preventDefault();
+      setIsContactFormOpen(true);
+    } else if (onClick) {
+      onClick(e);
+    }
+  };
 
   useEffect(() => {
     const button = buttonRef.current;
@@ -86,7 +100,7 @@ export function ProfessionalButton({
       });
     };
 
-    const handleClick = (e: MouseEvent) => {
+    const handleRippleClick = (e: MouseEvent) => {
       if (!rippleEffect || !ripple) return;
 
       const rect = button.getBoundingClientRect();
@@ -115,7 +129,7 @@ export function ProfessionalButton({
     button.addEventListener('mousedown', handleMouseDown);
     button.addEventListener('mouseup', handleMouseUp);
     if (rippleEffect) {
-      button.addEventListener('click', handleClick);
+      button.addEventListener('click', handleRippleClick);
     }
 
     return () => {
@@ -125,38 +139,48 @@ export function ProfessionalButton({
       button.removeEventListener('mousedown', handleMouseDown);
       button.removeEventListener('mouseup', handleMouseUp);
       if (rippleEffect) {
-        button.removeEventListener('click', handleClick);
+        button.removeEventListener('click', handleRippleClick);
       }
     };
   }, [magneticStrength, hoverScale, rippleEffect]);
 
   return (
-    <Button
-      ref={buttonRef}
-      variant={variant}
-      size={size}
-      data-professional-button="true"
-      className={cn(
-        "relative overflow-hidden backdrop-blur-sm border-2 group",
-        "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700",
-        "hover:before:translate-x-[100%]",
-        "after:absolute after:inset-0 after:bg-gradient-to-r after:from-foreground/0 after:via-foreground/5 after:to-foreground/0 after:opacity-0 after:transition-opacity after:duration-300",
-        "hover:after:opacity-100",
-        className
-      )}
-      asChild={asChild}
-      {...props}
-    >
-      <>
-        {children}
-        {rippleEffect && (
-          <div
-            ref={rippleRef}
-            className="absolute w-4 h-4 bg-white/30 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
-            style={{ left: 0, top: 0 }}
-          />
+    <>
+      <Button
+        ref={buttonRef}
+        variant={variant}
+        size={size}
+        data-professional-button="true"
+        className={cn(
+          "relative overflow-hidden backdrop-blur-sm border-2 group",
+          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700",
+          "hover:before:translate-x-[100%]",
+          "after:absolute after:inset-0 after:bg-gradient-to-r after:from-foreground/0 after:via-foreground/5 after:to-foreground/0 after:opacity-0 after:transition-opacity after:duration-300",
+          "hover:after:opacity-100",
+          className
         )}
-      </>
-    </Button>
+        onClick={handleClick}
+        asChild={asChild}
+        {...props}
+      >
+        <>
+          {children}
+          {rippleEffect && (
+            <div
+              ref={rippleRef}
+              className="absolute w-4 h-4 bg-white/30 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+              style={{ left: 0, top: 0 }}
+            />
+          )}
+        </>
+      </Button>
+      
+      {showContactForm && (
+        <ContactFormDialog
+          isOpen={isContactFormOpen}
+          onClose={() => setIsContactFormOpen(false)}
+        />
+      )}
+    </>
   );
 }
