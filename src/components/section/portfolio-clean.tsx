@@ -223,7 +223,11 @@ const ReelVideoPlayer = ({
             size="sm"
             variant="ghost"
             className="text-white/80 hover:text-white p-0 h-auto"
-            onClick={() => window.open(instagramUrl, '_blank')}
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.open(instagramUrl, '_blank');
+              }
+            }}
           >
             <ExternalLink className="w-4 h-4" />
           </Button>

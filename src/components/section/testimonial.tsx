@@ -154,7 +154,10 @@ export default function TestimonialSection() {
   useScrollAnimations();
 
   // Constants for better performance
-  const CARD_WIDTH_MOBILE = useMemo(() => Math.min(window.innerWidth * 0.9, 400), []);
+  const CARD_WIDTH_MOBILE = useMemo(() => {
+    if (typeof window === 'undefined') return 350; // Default for SSR
+    return Math.min(window.innerWidth * 0.9, 400);
+  }, []);
   const CARD_WIDTH_DESKTOP = 400;
   const SCROLL_SPEED = 0.5; // Slower, smoother scrolling
   const THROTTLE_DELAY = 16; // 60fps throttling
@@ -181,7 +184,7 @@ export default function TestimonialSection() {
     if (!scrollContainerRef.current) return;
     
     const container = scrollContainerRef.current;
-    const cardWidth = window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
+    const cardWidth = typeof window !== 'undefined' && window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
     const totalOriginalWidth = testimonials.length * cardWidth;
     const currentScroll = container.scrollLeft % totalOriginalWidth;
     const progress = Math.min((currentScroll / totalOriginalWidth) * 100, 100);
@@ -208,7 +211,7 @@ export default function TestimonialSection() {
       if (!container || isHovered) return;
       
       const currentScroll = container.scrollLeft;
-      const cardWidth = window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
+      const cardWidth = typeof window !== 'undefined' && window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
       const totalOriginalWidth = testimonials.length * cardWidth;
       
       // Smooth infinite scroll with reset
@@ -237,7 +240,7 @@ export default function TestimonialSection() {
     setIsHovered(true);
     
     const container = scrollContainerRef.current;
-    const cardWidth = window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
+    const cardWidth = typeof window !== 'undefined' && window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;
     const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
     
     // Use smooth scrolling with better easing
