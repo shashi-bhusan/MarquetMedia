@@ -13,14 +13,18 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const darkMode = localStorage.getItem("darkMode") === "true";
-    setIsDarkMode(darkMode);
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
+    if (typeof window !== 'undefined') {
+      const darkMode = localStorage.getItem("darkMode") === "true";
+      setIsDarkMode(darkMode);
+      if (darkMode) {
+        document.documentElement.classList.add("dark");
+      }
     }
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -101,6 +105,8 @@ export default function Header() {
   }, [activeSection]);
 
   const toggleDarkMode = () => {
+    if (typeof window === 'undefined') return;
+    
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
     localStorage.setItem("darkMode", newDarkMode.toString());
@@ -113,6 +119,8 @@ export default function Header() {
   };
 
   const handleNavClick = (sectionId: string) => {
+    if (typeof window === 'undefined') return;
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ 

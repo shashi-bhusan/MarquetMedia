@@ -53,8 +53,12 @@ const ClientLogo = ({ brandName }: { brandName: string }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Enhanced dark mode detection to match header component logic
     const checkDarkMode = () => {
+      if (typeof window === 'undefined') return;
+      
       // Check localStorage first (matches header component logic)
       const storedDarkMode = localStorage.getItem("darkMode");
       
@@ -154,7 +158,10 @@ export default function TestimonialSection() {
   useScrollAnimations();
 
   // Constants for better performance
-  const CARD_WIDTH_MOBILE = useMemo(() => Math.min(window.innerWidth * 0.9, 400), []);
+  const CARD_WIDTH_MOBILE = useMemo(() => {
+    if (typeof window === 'undefined') return 400;
+    return Math.min(window.innerWidth * 0.9, 400);
+  }, []);
   const CARD_WIDTH_DESKTOP = 400;
   const SCROLL_SPEED = 0.5; // Slower, smoother scrolling
   const THROTTLE_DELAY = 16; // 60fps throttling
@@ -173,6 +180,8 @@ export default function TestimonialSection() {
 
   // Throttled scroll handler for better performance
   const handleScroll = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    
     const now = Date.now();
     if (now - lastScrollTimeRef.current < THROTTLE_DELAY) return;
     
@@ -202,6 +211,7 @@ export default function TestimonialSection() {
     if (!scrollContainerRef.current || isHovered) return;
 
     const container = scrollContainerRef.current;
+    if (typeof window === 'undefined') return;
     let rafId: number;
     
     const autoScroll = () => {
@@ -235,6 +245,7 @@ export default function TestimonialSection() {
     if (!scrollContainerRef.current) return;
     
     setIsHovered(true);
+    if (typeof window === 'undefined') return;
     
     const container = scrollContainerRef.current;
     const cardWidth = window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP;

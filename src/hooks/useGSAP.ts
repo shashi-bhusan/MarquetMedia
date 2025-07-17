@@ -130,6 +130,8 @@ export const animations = {
 
   // Magnetic hover effect
   magneticHover: (element: string | Element) => {
+    if (typeof window === 'undefined') return;
+    
     const el = typeof element === 'string' ? document.querySelector(element) : element;
     if (!el) return;
 

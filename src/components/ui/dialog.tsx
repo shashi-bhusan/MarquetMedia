@@ -28,7 +28,7 @@ export function Dialog({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || typeof window === 'undefined') return;
 
     const overlay = overlayRef.current;
     const dialog = dialogRef.current;
@@ -102,13 +102,13 @@ export function Dialog({
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof window !== 'undefined') {
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof window === 'undefined') return null;
 
   return createPortal(
     <div
