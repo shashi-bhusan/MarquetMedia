@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
           <div style="background: linear-gradient(135deg, #F8F4E8 0%, rgba(248, 244, 232, 0.5) 100%); border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid #2D2D2D;">
             <h2 style="color: #2D2D2D; font-size: 20px; margin: 0 0 15px 0; font-weight: 500; font-family: 'Baskerville', serif;">Hey ${name}! 👋</h2>
             <p style="color: #2D2D2D; line-height: 1.7; margin: 0; font-size: 15px; opacity: 0.9;">
-              Thanks for reaching out to us about <strong style="font-family: 'Baskerville', serif;">${businessName}</strong>! We're absolutely stoked to learn more about your project and how we can help bring your vision to life with some serious creative magic.
+              Thanks for reaching out to us about <strong style="font-family: 'Baskerville', serif;">${businessName}</strong>! We’re truly excited to learn more about your project and explore how we can elevate your brand with impactful design and strategic growth solutions.
             </p>
           </div>
 
@@ -87,11 +87,11 @@ export async function POST(request: NextRequest) {
             <div style="space-y: 12px;">
               <p style="color: #2D2D2D; margin: 8px 0; font-size: 14px; display: flex; align-items: flex-start; opacity: 0.8;">
                 <span style="color: #2D2D2D; margin-right: 8px; font-weight: bold; opacity: 0.6;">•</span>
-                Our team will review your project details within the next <strong>24 hours</strong>
+                Our team will review your project details within the next 24 hours
               </p>
               <p style="color: #2D2D2D; margin: 8px 0; font-size: 14px; display: flex; align-items: flex-start; opacity: 0.8;">
                 <span style="color: #2D2D2D; margin-right: 8px; font-weight: bold; opacity: 0.6;">•</span>
-                We'll craft a personalized strategy proposal that's totally <em>your vibe</em>
+                We'll craft a personalized strategy proposal that's totally your vibe
               </p>
               <p style="color: #2D2D2D; margin: 8px 0; font-size: 14px; display: flex; align-items: flex-start; opacity: 0.8;">
                 <span style="color: #2D2D2D; margin-right: 8px; font-weight: bold; opacity: 0.6;">•</span>
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
 
           <!-- Footer with brand identity -->
           <div style="text-align: center; margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(45, 45, 45, 0.1);">
-            <p style="color: #2D2D2D; font-size: 24px; margin: 0 0 5px 0; font-weight: 300; font-family: 'Baskerville', serif;">Marquet <span style="font-family: 'Montserrat', sans-serif;">MEDIA</span></p>
+            <p style="color: #2D2D2D; font-size: 24px; margin: 0 0 5px 0; font-weight: 300; font-family: 'Baskerville', serif;">MARQUET <span style="font-family: 'Montserrat', sans-serif;">MEDIA</span></p>
             <p style="color: #2D2D2D; font-size: 14px; margin: 0; font-style: italic; opacity: 0.7;">Where strategy meets subtle storytelling</p>
             <div style="margin-top: 15px;">
               <span style="color: #2D2D2D; font-size: 12px; opacity: 0.6;">Ranchi • Jharkhand • East India</span>
