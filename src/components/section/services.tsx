@@ -172,6 +172,7 @@ export default function Services() {
                     className="font-montserrat font-medium px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm w-full sm:w-auto uppercase tracking-wider"
                     magneticStrength={25}
                     hoverScale={1.03}
+                    showContactForm={true}
                   >
                     Partner with Us
                     <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />

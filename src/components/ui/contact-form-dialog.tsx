@@ -91,22 +91,33 @@ export function ContactFormDialog({ isOpen, onClose }: ContactFormDialogProps) {
     setIsSubmitting(true);
 
     try {
-      // Here you would typically send the data to your backend
-      // For now, we'll simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Form submitted:', formData);
+      // Send the form data to our API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const result = await response.json();
+      console.log('Emails sent successfully:', result);
       
       setIsSubmitted(true);
       
-      // Auto-close after success
+      // Auto-close after success with a longer delay to read the message
       setTimeout(() => {
         handleClose();
-      }, 2000);
+      }, 4000);
       
     } catch (error) {
       console.error('Error submitting form:', error);
       // You could set a global error state here
+      alert('Sorry, there was an error sending your message. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -131,17 +142,38 @@ export function ContactFormDialog({ isOpen, onClose }: ContactFormDialogProps) {
       <Dialog
         isOpen={isOpen}
         onClose={handleClose}
-        title="Thank You!"
-        description="We've received your message and will get back to you soon."
+        title="We Heard You! 🚀"
+        description="Your message just landed in our inbox and we're absolutely stoked!"
         className="max-w-md"
       >
         <div className="text-center py-8">
-          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-green-600 dark:text-green-400" />
+          {/* Brand-aligned success icon with cream background */}
+          <div className="w-20 h-20 bg-gradient-to-br from-foreground to-foreground/80 dark:from-cream dark:to-cream/90 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg border border-foreground/10">
+            <Check className="w-10 h-10 text-background dark:text-foreground" />
           </div>
-          <p className="text-foreground/70 mb-6">
-            We'll review your request and reach out within 24 hours to discuss how we can help elevate your brand.
-          </p>
+          
+          <div className="space-y-4 mb-6">
+            <h3 className="text-xl font-semibold text-foreground font-montserrat">
+              Message Sent Successfully! ✨
+            </h3>
+            <p className="text-foreground/70 leading-relaxed font-montserrat text-sm">
+              Our team will review your project and reach out within <strong>24 hours</strong> to discuss how we can help elevate your brand.
+            </p>
+            
+            {/* Brand-consistent info box */}
+            <div className="bg-cream/50 dark:bg-foreground/5 rounded-lg p-4 border border-foreground/10">
+              <p className="text-sm text-foreground/80 font-montserrat">
+                <strong className="font-baskerville">What's next?</strong> We're crafting a personalized strategy just for you. Check your inbox for a confirmation email! 
+              </p>
+            </div>
+          </div>
+
+          <div className="text-xs text-foreground/50 italic font-baskerville">
+            Ready to make some noise together? 📢
+          </div>
+          
+          {/* Subtle brand accent */}
+          <div className="w-12 h-px bg-foreground/20 mx-auto mt-4"></div>
         </div>
       </Dialog>
     );
@@ -158,7 +190,7 @@ export function ContactFormDialog({ isOpen, onClose }: ContactFormDialogProps) {
         <Input
           label="Your Name"
           type="text"
-          placeholder="John Doe"
+          placeholder="Rohini Modi"
           value={formData.name}
           onChange={(e) => handleInputChange('name', e.target.value)}
           error={errors.name}
@@ -168,7 +200,7 @@ export function ContactFormDialog({ isOpen, onClose }: ContactFormDialogProps) {
         <Input
           label="Email Address"
           type="email"
-          placeholder="john@example.com"
+          placeholder="rohinimodi@example.com"
           value={formData.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
           error={errors.email}

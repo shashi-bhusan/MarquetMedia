@@ -446,7 +446,7 @@ const DualRowLogoGrid = () => {
         const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
         
         // If no explicit class, fall back to system preference
-        const systemPrefersDark = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : false;
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
         // Final determination
         const isDark = hasExplicitDarkClass || systemPrefersDark;
@@ -475,24 +475,16 @@ const DualRowLogoGrid = () => {
         checkDarkMode();
       };
       
-      if (typeof window !== 'undefined') {
-        window.addEventListener('storage', handleStorageChange);
-      }
+      window.addEventListener('storage', handleStorageChange);
 
       // Listen for system theme changes
-      const mediaQuery = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-      if (mediaQuery) {
-        mediaQuery.addEventListener('change', checkDarkMode);
-      }
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', checkDarkMode);
 
       return () => {
         observer.disconnect();
-        if (typeof window !== 'undefined') {
-          window.removeEventListener('storage', handleStorageChange);
-        }
-        if (mediaQuery) {
-          mediaQuery.removeEventListener('change', checkDarkMode);
-        }
+        window.removeEventListener('storage', handleStorageChange);
+        mediaQuery.removeEventListener('change', checkDarkMode);
       };
     }, []);
 

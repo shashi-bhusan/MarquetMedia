@@ -97,12 +97,7 @@ export default function HeroSection() {
                     className="font-montserrat font-medium px-6 py-3 text-xs uppercase tracking-wider"
                     magneticStrength={20}
                     hoverScale={1.03}
-                    onClick={() => {
-                      const portfolioSection = document.getElementById('portfolio');
-                      if (portfolioSection) {
-                        portfolioSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
+                    showContactForm={true}
                   >
                     Start A Project
                   </ProfessionalButton>

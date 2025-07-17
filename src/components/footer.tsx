@@ -182,25 +182,25 @@ export default function Footer() {
           {/* Social Media Links */}
             <div ref={socialRef} className="flex space-x-3">
               <a
-                href="#"
+                href="https://www.instagram.com/marquetmedia?igsh=cHk3ejZ5d3FvZm5q&utm_source=qr"
                 className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
               >
                 <Instagram className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
               </a>
-              <a
+              {/* <a
                 href="#"
                 className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
               >
                 <Twitter className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="#"
                 className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
               >
                 <Linkedin className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
-              </a>
+              </a> */}
               <a
-                href="#"
+                href="mailto:info@marquetmedia.com"
                 className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
               >
                 <Mail className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
@@ -222,7 +222,7 @@ export default function Footer() {
         {/* Bottom Copyright */}
         <div
           ref={copyrightRef}
-          className="border-t my-12 text-center"
+          className="border-b-0 border-x-0 border my-12 text-center"
         >
           
             <p className="font-montserrat text-foreground text-sm my-8">

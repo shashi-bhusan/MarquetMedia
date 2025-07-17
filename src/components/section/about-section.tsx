@@ -72,6 +72,7 @@ export default function AboutSection() {
                 className="text-foreground font-montserrat font-medium px-8 py-3"
                 magneticStrength={25}
                 hoverScale={1.05}
+                showContactForm={true}
               >
                 Let's Collaborate
                 <ArrowRight className="ml-2 h-4 w-4" />
