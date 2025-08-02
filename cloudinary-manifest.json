@@ -1,0 +1,641 @@
+{
+  "uploadDate": "2025-08-02T16:31:28.876Z",
+  "totalAssets": 77,
+  "totalSizeMB": 59,
+  "videoAssets": 16,
+  "imageAssets": 61,
+  "assets": [
+    {
+      "original": "marquetmedia.mp4",
+      "publicId": "marquet-media/marquet-media/marquetmedia",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151857/marquet-media/marquet-media/marquetmedia.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/marquetmedia?_a=BAMAK+WO0",
+      "bytes": 1519894,
+      "duration": 10.35,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-1.mp4",
+      "publicId": "marquet-media/marquet-media/reel-1",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151862/marquet-media/marquet-media/reel-1.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-1?_a=BAMAK+WO0",
+      "bytes": 754125,
+      "duration": 11.711712,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-2.mp4",
+      "publicId": "marquet-media/marquet-media/reel-2",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151867/marquet-media/marquet-media/reel-2.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-2?_a=BAMAK+WO0",
+      "bytes": 488414,
+      "duration": 16.068005,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-3.mp4",
+      "publicId": "marquet-media/marquet-media/reel-3",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151870/marquet-media/marquet-media/reel-3.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-3?_a=BAMAK+WO0",
+      "bytes": 3703572,
+      "duration": 76.950998,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-4.mp4",
+      "publicId": "marquet-media/marquet-media/reel-4",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151878/marquet-media/marquet-media/reel-4.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-4?_a=BAMAK+WO0",
+      "bytes": 1533034,
+      "duration": 21.593991,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-5.mp4",
+      "publicId": "marquet-media/marquet-media/reel-5",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151884/marquet-media/marquet-media/reel-5.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-5?_a=BAMAK+WO0",
+      "bytes": 12247663,
+      "duration": 43.733,
+      "format": "mp4"
+    },
+    {
+      "original": "reel-6.mp4",
+      "publicId": "marquet-media/marquet-media/reel-6",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151943/marquet-media/marquet-media/reel-6.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/reel-6?_a=BAMAK+WO0",
+      "bytes": 1851316,
+      "duration": 20.061995,
+      "format": "mp4"
+    },
+    {
+      "original": "bts/C0442.MP4",
+      "publicId": "marquet-media/marquet-media/C0442",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151948/marquet-media/marquet-media/C0442.mp4",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/C0442?_a=BAMAK+WO0",
+      "bytes": 1548365,
+      "duration": 5.291,
+      "format": "mp4"
+    },
+    {
+      "original": "bts/IMG_0038.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_0038",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151957/marquet-media/marquet-media/IMG_0038.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_0038?_a=BAMAK+WO0",
+      "bytes": 5070876,
+      "duration": 20.689002,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_0160.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_0160",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754151976/marquet-media/marquet-media/IMG_0160.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_0160?_a=BAMAK+WO0",
+      "bytes": 2826493,
+      "duration": 6.663991,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_0397.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_0397",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152021/marquet-media/marquet-media/IMG_0397.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_0397?_a=BAMAK+WO0",
+      "bytes": 5206924,
+      "duration": 11.980998,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_1770.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_1770",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152053/marquet-media/marquet-media/IMG_1770.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_1770?_a=BAMAK+WO0",
+      "bytes": 9099035,
+      "duration": 24.056009,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_2538.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_2538",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152081/marquet-media/marquet-media/IMG_2538.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_2538?_a=BAMAK+WO0",
+      "bytes": 3956780,
+      "duration": 13.468005,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_3287.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_3287",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152103/marquet-media/marquet-media/IMG_3287.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_3287?_a=BAMAK+WO0",
+      "bytes": 2136496,
+      "duration": 3.412993,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_3288.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_3288",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152108/marquet-media/marquet-media/IMG_3288.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_3288?_a=BAMAK+WO0",
+      "bytes": 1643995,
+      "duration": 3.621995,
+      "format": "mov"
+    },
+    {
+      "original": "bts/IMG_7721.MOV",
+      "publicId": "marquet-media/marquet-media/IMG_7721",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/video/upload/v1754152114/marquet-media/marquet-media/IMG_7721.mov",
+      "posterUrl": "https://res.cloudinary.com/dhiqzdvm3/video/upload/c_fill,h_600,q_auto,w_800/so_2/v1/marquet-media/marquet-media/IMG_7721?_a=BAMAK+WO0",
+      "bytes": 1453035,
+      "duration": 3.297007,
+      "format": "mov"
+    },
+    {
+      "original": "protfolio_logo_dark/1.png",
+      "publicId": "marquet-media/images/marquet-media/images/1",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152120/marquet-media/images/marquet-media/images/1.png",
+      "type": "image",
+      "bytes": 174885,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 10.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 10",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152122/marquet-media/images/marquet-media/images/Frame%2010.png",
+      "type": "image",
+      "bytes": 41227,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 11.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 11",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152124/marquet-media/images/marquet-media/images/Frame%2011.png",
+      "type": "image",
+      "bytes": 76067,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 12.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 12",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152126/marquet-media/images/marquet-media/images/Frame%2012.png",
+      "type": "image",
+      "bytes": 39487,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 13.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 13",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152128/marquet-media/images/marquet-media/images/Frame%2013.png",
+      "type": "image",
+      "bytes": 146617,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 14.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 14",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152130/marquet-media/images/marquet-media/images/Frame%2014.png",
+      "type": "image",
+      "bytes": 145777,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 15.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 15",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152132/marquet-media/images/marquet-media/images/Frame%2015.png",
+      "type": "image",
+      "bytes": 172301,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 16.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 16",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152135/marquet-media/images/marquet-media/images/Frame%2016.jpg",
+      "type": "image",
+      "bytes": 57773,
+      "format": "jpg"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 17.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 17",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152136/marquet-media/images/marquet-media/images/Frame%2017.png",
+      "type": "image",
+      "bytes": 45445,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 18.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 18",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152138/marquet-media/images/marquet-media/images/Frame%2018.png",
+      "type": "image",
+      "bytes": 49638,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 19.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 19",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152139/marquet-media/images/marquet-media/images/Frame%2019.png",
+      "type": "image",
+      "bytes": 188061,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 2.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 2",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152142/marquet-media/images/marquet-media/images/Frame%202.png",
+      "type": "image",
+      "bytes": 128450,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 20.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 20",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152144/marquet-media/images/marquet-media/images/Frame%2020.png",
+      "type": "image",
+      "bytes": 141535,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 3.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 3",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152146/marquet-media/images/marquet-media/images/Frame%203.png",
+      "type": "image",
+      "bytes": 64068,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 4.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 4",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152148/marquet-media/images/marquet-media/images/Frame%204.png",
+      "type": "image",
+      "bytes": 80457,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 5.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 5",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152149/marquet-media/images/marquet-media/images/Frame%205.png",
+      "type": "image",
+      "bytes": 87277,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 6.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 6",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152151/marquet-media/images/marquet-media/images/Frame%206.png",
+      "type": "image",
+      "bytes": 55211,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 7.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 7",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152153/marquet-media/images/marquet-media/images/Frame%207.png",
+      "type": "image",
+      "bytes": 183796,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 8.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 8",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152155/marquet-media/images/marquet-media/images/Frame%208.png",
+      "type": "image",
+      "bytes": 25569,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_dark/Frame 9.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 9",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152158/marquet-media/images/marquet-media/images/Frame%209.png",
+      "type": "image",
+      "bytes": 79200,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/1.png",
+      "publicId": "marquet-media/images/marquet-media/images/1",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152120/marquet-media/images/marquet-media/images/1.png",
+      "type": "image",
+      "bytes": 174885,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 10.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 10",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152165/marquet-media/images/marquet-media/images/Frame%2010.png",
+      "type": "image",
+      "bytes": 38637,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 11.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 11",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152124/marquet-media/images/marquet-media/images/Frame%2011.png",
+      "type": "image",
+      "bytes": 76067,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 12.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 12",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152172/marquet-media/images/marquet-media/images/Frame%2012.png",
+      "type": "image",
+      "bytes": 46345,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 13.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 13",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152128/marquet-media/images/marquet-media/images/Frame%2013.png",
+      "type": "image",
+      "bytes": 146617,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 14.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 14",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152181/marquet-media/images/marquet-media/images/Frame%2014.png",
+      "type": "image",
+      "bytes": 145208,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 15.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 15",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152188/marquet-media/images/marquet-media/images/Frame%2015.png",
+      "type": "image",
+      "bytes": 253708,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 16.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 16",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152191/marquet-media/images/marquet-media/images/Frame%2016.png",
+      "type": "image",
+      "bytes": 92541,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 17.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 17",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152136/marquet-media/images/marquet-media/images/Frame%2017.png",
+      "type": "image",
+      "bytes": 45445,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 18.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 18",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152195/marquet-media/images/marquet-media/images/Frame%2018.png",
+      "type": "image",
+      "bytes": 47575,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 19.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 19",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152139/marquet-media/images/marquet-media/images/Frame%2019.png",
+      "type": "image",
+      "bytes": 188061,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 2.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 2",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152142/marquet-media/images/marquet-media/images/Frame%202.png",
+      "type": "image",
+      "bytes": 128450,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 20.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 20",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152202/marquet-media/images/marquet-media/images/Frame%2020.png",
+      "type": "image",
+      "bytes": 151871,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 21.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 21",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152205/marquet-media/images/marquet-media/images/Frame%2021.png",
+      "type": "image",
+      "bytes": 80426,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 3.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 3",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152207/marquet-media/images/marquet-media/images/Frame%203.png",
+      "type": "image",
+      "bytes": 64923,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 5.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 5",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152210/marquet-media/images/marquet-media/images/Frame%205.png",
+      "type": "image",
+      "bytes": 68062,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 6.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 6",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152212/marquet-media/images/marquet-media/images/Frame%206.png",
+      "type": "image",
+      "bytes": 52437,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 7.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 7",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152153/marquet-media/images/marquet-media/images/Frame%207.png",
+      "type": "image",
+      "bytes": 183796,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 8.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 8",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152226/marquet-media/images/marquet-media/images/Frame%208.png",
+      "type": "image",
+      "bytes": 25409,
+      "format": "png"
+    },
+    {
+      "original": "protfolio_logo_light/Frame 9.png",
+      "publicId": "marquet-media/images/marquet-media/images/Frame 9",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152229/marquet-media/images/marquet-media/images/Frame%209.png",
+      "type": "image",
+      "bytes": 81479,
+      "format": "png"
+    },
+    {
+      "original": "illustration/designer-desk.svg",
+      "publicId": "marquet-media/images/marquet-media/images/designer-desk",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152232/marquet-media/images/marquet-media/images/designer-desk.png",
+      "type": "image",
+      "bytes": 1929,
+      "format": "png"
+    },
+    {
+      "original": "illustration/designer-working.svg",
+      "publicId": "marquet-media/images/marquet-media/images/designer-working",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152234/marquet-media/images/marquet-media/images/designer-working.png",
+      "type": "image",
+      "bytes": 1767,
+      "format": "png"
+    },
+    {
+      "original": "illustration/digital-nomad-working-in-airport.svg",
+      "publicId": "marquet-media/images/marquet-media/images/digital-nomad-working-in-airport",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152237/marquet-media/images/marquet-media/images/digital-nomad-working-in-airport.png",
+      "type": "image",
+      "bytes": 1988,
+      "format": "png"
+    },
+    {
+      "original": "illustration/digital-nomad-working-near-beach.svg",
+      "publicId": "marquet-media/images/marquet-media/images/digital-nomad-working-near-beach",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152239/marquet-media/images/marquet-media/images/digital-nomad-working-near-beach.png",
+      "type": "image",
+      "bytes": 1846,
+      "format": "png"
+    },
+    {
+      "original": "illustration/financial-literacy.svg",
+      "publicId": "marquet-media/images/marquet-media/images/financial-literacy",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152242/marquet-media/images/marquet-media/images/financial-literacy.png",
+      "type": "image",
+      "bytes": 2139,
+      "format": "png"
+    },
+    {
+      "original": "illustration/get-a-job-promotion.svg",
+      "publicId": "marquet-media/images/marquet-media/images/get-a-job-promotion",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152244/marquet-media/images/marquet-media/images/get-a-job-promotion.png",
+      "type": "image",
+      "bytes": 2102,
+      "format": "png"
+    },
+    {
+      "original": "illustration/grow-plants-home-garden.svg",
+      "publicId": "marquet-media/images/marquet-media/images/grow-plants-home-garden",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152248/marquet-media/images/marquet-media/images/grow-plants-home-garden.png",
+      "type": "image",
+      "bytes": 1929,
+      "format": "png"
+    },
+    {
+      "original": "illustration/having-fun.svg",
+      "publicId": "marquet-media/images/marquet-media/images/having-fun",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152250/marquet-media/images/marquet-media/images/having-fun.png",
+      "type": "image",
+      "bytes": 1444,
+      "format": "png"
+    },
+    {
+      "original": "bts/image.png",
+      "publicId": "marquet-media/images/marquet-media/images/image",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152265/marquet-media/images/marquet-media/images/image.jpg",
+      "type": "image",
+      "bytes": 2446581,
+      "format": "jpg"
+    },
+    {
+      "original": "MARQUET.svg",
+      "publicId": "marquet-media/images/marquet-media/images/MARQUET",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152267/marquet-media/images/marquet-media/images/MARQUET.png",
+      "type": "image",
+      "bytes": 21420,
+      "format": "png"
+    },
+    {
+      "original": "bridge-night.svg",
+      "publicId": "marquet-media/images/marquet-media/images/bridge-night",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152270/marquet-media/images/marquet-media/images/bridge-night.png",
+      "type": "image",
+      "bytes": 7015,
+      "format": "png"
+    },
+    {
+      "original": "client-1.png",
+      "publicId": "marquet-media/images/marquet-media/images/client-1",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152272/marquet-media/images/marquet-media/images/client-1.png",
+      "type": "image",
+      "bytes": 38659,
+      "format": "png"
+    },
+    {
+      "original": "client-2.png",
+      "publicId": "marquet-media/images/marquet-media/images/client-2",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152273/marquet-media/images/marquet-media/images/client-2.png",
+      "type": "image",
+      "bytes": 5015,
+      "format": "png"
+    },
+    {
+      "original": "client-3.webp",
+      "publicId": "marquet-media/images/marquet-media/images/client-3",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152275/marquet-media/images/marquet-media/images/client-3.png",
+      "type": "image",
+      "bytes": 8960,
+      "format": "png"
+    },
+    {
+      "original": "file.svg",
+      "publicId": "marquet-media/images/marquet-media/images/file",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152276/marquet-media/images/marquet-media/images/file.png",
+      "type": "image",
+      "bytes": 180,
+      "format": "png"
+    },
+    {
+      "original": "globe.svg",
+      "publicId": "marquet-media/images/marquet-media/images/globe",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152277/marquet-media/images/marquet-media/images/globe.png",
+      "type": "image",
+      "bytes": 202,
+      "format": "png"
+    },
+    {
+      "original": "logo.png",
+      "publicId": "marquet-media/images/marquet-media/images/logo",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152280/marquet-media/images/marquet-media/images/logo.png",
+      "type": "image",
+      "bytes": 10296,
+      "format": "png"
+    },
+    {
+      "original": "next.svg",
+      "publicId": "marquet-media/images/marquet-media/images/next",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152281/marquet-media/images/marquet-media/images/next.png",
+      "type": "image",
+      "bytes": 1308,
+      "format": "png"
+    },
+    {
+      "original": "reshape.svg",
+      "publicId": "marquet-media/images/marquet-media/images/reshape",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152284/marquet-media/images/marquet-media/images/reshape.png",
+      "type": "image",
+      "bytes": 832,
+      "format": "png"
+    },
+    {
+      "original": "vercel.svg",
+      "publicId": "marquet-media/images/marquet-media/images/vercel",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152286/marquet-media/images/marquet-media/images/vercel.png",
+      "type": "image",
+      "bytes": 4627,
+      "format": "png"
+    },
+    {
+      "original": "window.svg",
+      "publicId": "marquet-media/images/marquet-media/images/window",
+      "url": "https://res.cloudinary.com/dhiqzdvm3/image/upload/v1754152289/marquet-media/images/marquet-media/images/window.png",
+      "type": "image",
+      "bytes": 156,
+      "format": "png"
+    }
+  ]
+}
