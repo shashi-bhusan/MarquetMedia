@@ -6,6 +6,7 @@ import { ProfessionalButton } from '@/components/ui/professional-button';
 import { ArrowUpRight, ExternalLink, Play, ChevronRight, Eye, Heart, MessageCircle, Star, TrendingUp, Award, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
+import { OptimizedVideo } from '@/components/OptimizedVideo';
 
 // Enhanced Portfolio Video Player with Agency-style Interactions
 const PortfolioVideoPlayer = ({ 
@@ -130,16 +131,22 @@ const PortfolioVideoPlayer = ({
   return (
     <div className="group cursor-pointer relative bg-black overflow-hidden w-full rounded-2xl border border-foreground/10 shadow-lg hover:shadow-2xl transition-all duration-700" style={{ height }}>
       {/* Video Player */}
-      <video
+      <OptimizedVideo
         ref={videoRef}
+        src={videoSrc}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         loop
         muted
         playsInline
         preload="metadata"
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+        onTimeUpdate={() => {
+          // Handle progress updates
+          if (videoRef.current && !videoRef.current.paused && videoRef.current.duration) {
+            const progressPercent = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+            gsap.set(progressRef.current, { width: `${progressPercent}%` });
+          }
+        }}
+      />
 
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
