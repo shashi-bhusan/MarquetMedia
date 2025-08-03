@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { OptimizedVideo } from '@/components/OptimizedVideo';
 
+
 // Enhanced Portfolio Video Player with Agency-style Interactions
 const PortfolioVideoPlayer = ({ 
   videoSrc, 
@@ -497,17 +498,15 @@ const BTSVideoCard = ({ video }: { video: typeof btsVideos[0] }) => {
   return (
     <div className="flex-shrink-0 w-96 h-[500px] bg-foreground/5 overflow-hidden rounded-2xl border border-border/20 group hover:border-foreground/30 transition-all duration-500 hover:shadow-2xl hover:shadow-foreground/10">
       <div className="relative h-full">
-        <video
+        <OptimizedVideo
           ref={videoRef}
+          src={video.videoSrc}
           className="w-full h-full object-cover"
           loop
           muted
           playsInline
           preload="metadata"
-        >
-          <source src={video.videoSrc} type="video/quicktime" />
-          <source src={video.videoSrc} type="video/mp4" />
-        </video>
+        />
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
