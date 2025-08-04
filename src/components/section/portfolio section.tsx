@@ -425,69 +425,71 @@ const DualRowLogoGrid = () => {
     };
   }, []);
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Enhanced dark mode detection to match header component logic
+    const checkDarkMode = () => {
+      // Check localStorage first (matches header component logic)
+      const storedDarkMode = localStorage.getItem("darkMode");
+      
+      // If localStorage has a value, use it
+      if (storedDarkMode !== null) {
+        const isDark = storedDarkMode === "true";
+        setIsDarkMode(isDark);
+        return;
+      }
+      
+      // Fallback: check if dark class is present on document element
+      const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
+      
+      // If no explicit class, fall back to system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Final determination
+      const isDark = hasExplicitDarkClass || systemPrefersDark;
+      setIsDarkMode(isDark);
+    };
+
+    // Initial check
+    checkDarkMode();
+
+    // Listen for theme changes on document element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          checkDarkMode();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+
+    // Listen for localStorage changes (for theme toggle)
+    const handleStorageChange = () => {
+      checkDarkMode();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkDarkMode);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('storage', handleStorageChange);
+      mediaQuery.removeEventListener('change', checkDarkMode);
+    };
+  }, []);
+
+
   // Create logo boxes similar to service section with theme support
   const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-    useEffect(() => {
-      // Enhanced dark mode detection to match header component logic
-      const checkDarkMode = () => {
-        // Check localStorage first (matches header component logic)
-        const storedDarkMode = localStorage.getItem("darkMode");
-        
-        // If localStorage has a value, use it
-        if (storedDarkMode !== null) {
-          const isDark = storedDarkMode === "true";
-          setIsDarkMode(isDark);
-          return;
-        }
-        
-        // Fallback: check if dark class is present on document element
-        const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
-        
-        // If no explicit class, fall back to system preference
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Final determination
-        const isDark = hasExplicitDarkClass || systemPrefersDark;
-        setIsDarkMode(isDark);
-      };
-
-      // Initial check
-      checkDarkMode();
-
-      // Listen for theme changes on document element
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-            checkDarkMode();
-          }
-        });
-      });
-      
-      observer.observe(document.documentElement, { 
-        attributes: true, 
-        attributeFilter: ['class'] 
-      });
-
-      // Listen for localStorage changes (for theme toggle)
-      const handleStorageChange = () => {
-        checkDarkMode();
-      };
-      
-      window.addEventListener('storage', handleStorageChange);
-
-      // Listen for system theme changes
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', checkDarkMode);
-
-      return () => {
-        observer.disconnect();
-        window.removeEventListener('storage', handleStorageChange);
-        mediaQuery.removeEventListener('change', checkDarkMode);
-      };
-    }, []);
-
+    
     const logoSrc = isDarkMode ? client.darkLogo : client.lightLogo;
 
     return (
