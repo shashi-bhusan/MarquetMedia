@@ -165,7 +165,7 @@ export const CloudinaryVideoPlayer = ({
             key={index}
             src={source.src}
             type={source.type}
-            media={source.media}
+            {...(('media' in source) && { media: source.media })}
           />
         ))}
         

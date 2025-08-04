@@ -1,7 +1,6 @@
 import { cld } from './cloudinary';
 import { fill } from '@cloudinary/url-gen/actions/resize';
 import { format, quality } from '@cloudinary/url-gen/actions/delivery';
-import { videoEdit } from '@cloudinary/url-gen/actions/videoEdit';
 import { preview } from '@cloudinary/url-gen/actions/videoEdit';
 
 // Enhanced video presets for different use cases
@@ -109,8 +108,7 @@ export const getOptimizedVideoUrl = (
     video.delivery(quality(connectionQuality));
     video.delivery(format('auto'));
     
-    // Add video-specific optimizations
-    video.videoEdit(preview().duration(2)); // 2-second preview for faster loading
+    // Video is ready for delivery
     
     return video.toURL();
   } catch (error) {
