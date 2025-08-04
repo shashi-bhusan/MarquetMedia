@@ -9,21 +9,129 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Hook for using scroll animations
+// Hook for using scroll animations with performance optimizations
 export const useScrollAnimations = () => {
   const ctx = useRef<gsap.Context | null>(null);
 
   useEffect(() => {
-    ctx.current = gsap.context(() => {});
-    return () => ctx.current?.revert();
+    ctx.current = gsap.context(() => {
+      // Set default ScrollTrigger configuration for better performance
+      ScrollTrigger.config({
+        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+        ignoreMobileResize: true
+      });
+    });
+
+    return () => {
+      ctx.current?.revert();
+      ScrollTrigger.killAll();
+    };
   }, []);
 
   return ctx.current;
 };
 
+// Sequential animation system for hero loading
+export const createSequentialAnimation = (elements: (string | Element)[], options = {}) => {
+  const defaults = {
+    duration: 0.8,
+    ease: "power3.out",
+    stagger: 0.15,
+    delay: 0,
+    ...options
+  };
+
+  const tl = gsap.timeline({ delay: defaults.delay });
+  
+  elements.forEach((element, index) => {
+    const delay = index * defaults.stagger;
+    
+    // Set initial state
+    gsap.set(element, {
+      opacity: 0,
+      y: 40,
+      scale: 0.95,
+      filter: "blur(10px)"
+    });
+
+    // Animate in
+    tl.to(element, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: defaults.duration,
+      ease: defaults.ease
+    }, delay);
+  });
+
+  return tl;
+};
+
 // Modern, subtle scroll animations for design agencies
 const ScrollAnimations = {
-  // Gentle fade up - like lazy loading but refined
+  // Enhanced container reveal with better performance
+  containerReveal: (selector: string | Element | Element[], options = {}) => {
+    const defaults = {
+      duration: 1.2,
+      ease: "power3.out",
+      stagger: 0.08,
+      start: "top 85%",
+      ...options
+    };
+
+    const elements = typeof selector === 'string' ? 
+      document.querySelectorAll(selector) : 
+      Array.isArray(selector) ? selector : [selector];
+
+    if (!elements.length) return;
+
+    // Batch DOM reads/writes for better performance
+    const animations = Array.from(elements).map((element, index) => {
+      // Set initial state with transform3d for GPU acceleration
+      gsap.set(element, {
+        opacity: 0,
+        y: 50,
+        scale: 0.9,
+        rotationX: 15,
+        transformOrigin: "center bottom",
+        force3D: true
+      });
+
+      return {
+        element,
+        delay: index * defaults.stagger
+      };
+    });
+
+    // Use single timeline for better performance
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: elements[0],
+        start: defaults.start,
+        toggleActions: "play none none none",
+        once: true, // Only play once for better performance
+        fastScrollEnd: true,
+        preventOverlaps: true
+      }
+    });
+
+    animations.forEach(({ element, delay }) => {
+      tl.to(element, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotationX: 0,
+        duration: defaults.duration,
+        ease: defaults.ease,
+        force3D: true
+      }, delay);
+    });
+
+    return tl;
+  },
+
+  // High-performance fade up with GPU acceleration
   fadeUp: (selector: string | Element | Element[], options = {}) => {
     const defaults = {
       duration: 1.2,
@@ -33,25 +141,46 @@ const ScrollAnimations = {
       ...options
     };
 
-    gsap.set(selector, {
+    const elements = typeof selector === 'string' ? 
+      document.querySelectorAll(selector) : 
+      Array.isArray(selector) ? selector : [selector];
+
+    if (!elements.length) return;
+
+    // Batch initial setup
+    gsap.set(elements, {
       opacity: 0,
-      y: 40,
-      filter: "blur(8px)"
+      y: 60,
+      filter: "blur(12px)",
+      force3D: true,
+      willChange: "transform, opacity, filter"
     });
 
-    gsap.to(selector, {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: elements[0],
+        start: defaults.start,
+        toggleActions: "play none none none",
+        once: true,
+        fastScrollEnd: true
+      }
+    });
+
+    tl.to(elements, {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
       duration: defaults.duration,
       ease: defaults.ease,
       stagger: defaults.stagger,
-      scrollTrigger: {
-        trigger: selector,
-        start: defaults.start,
-        toggleActions: "play none none none" // Only play once
+      force3D: true,
+      onComplete: () => {
+        // Remove will-change after animation for better performance
+        gsap.set(elements, { willChange: "auto" });
       }
     });
+
+    return tl;
   },
 
   // Minimal slide from left
@@ -112,33 +241,57 @@ const ScrollAnimations = {
     });
   },
 
-  // Very subtle scale reveal
+  // Enhanced scale reveal with magnetic effect
   scaleReveal: (selector: string | Element | Element[], options = {}) => {
     const defaults = {
-      duration: 1.4,
-      ease: "power4.out",
-      start: "top 88%",
+      duration: 1.6,
+      ease: "elastic.out(1, 0.6)",
+      start: "top 85%",
+      delay: 0,
       ...options
     };
 
-    gsap.set(selector, {
+    const elements = typeof selector === 'string' ? 
+      document.querySelectorAll(selector) : 
+      Array.isArray(selector) ? selector : [selector];
+
+    if (!elements.length) return;
+
+    // Enhanced initial state with 3D transforms
+    gsap.set(elements, {
       opacity: 0,
-      scale: 0.96,
-      rotateZ: 1
+      scale: 0.7,
+      rotationY: 25,
+      rotationX: 15,
+      transformPerspective: 1000,
+      transformOrigin: "center center",
+      filter: "blur(15px) brightness(0.8)",
+      force3D: true
     });
 
-    gsap.to(selector, {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: elements[0],
+        start: defaults.start,
+        toggleActions: "play none none none",
+        once: true
+      },
+      delay: defaults.delay
+    });
+
+    tl.to(elements, {
       opacity: 1,
       scale: 1,
-      rotateZ: 0,
+      rotationY: 0,
+      rotationX: 0,
+      filter: "blur(0px) brightness(1)",
       duration: defaults.duration,
       ease: defaults.ease,
-      scrollTrigger: {
-        trigger: selector,
-        start: defaults.start,
-        toggleActions: "play none none none"
-      }
+      force3D: true,
+      stagger: 0.1
     });
+
+    return tl;
   },
 
   // Clean text reveal
@@ -271,8 +424,8 @@ const ScrollAnimations = {
     });
   },
 
-  // Staggered container reveal
-  containerReveal: (selector: string | Element | Element[], options = {}) => {
+  // Enhanced staggered container reveal (removing duplicate)
+  enhancedContainerReveal: (selector: string | Element | Element[], options = {}) => {
     const defaults = {
       duration: 1.0,
       ease: "power3.out",

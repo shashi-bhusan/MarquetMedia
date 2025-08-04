@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "upload-media": "node scripts/upload-to-cloudinary.js",
-    "optimize-media": "npm run upload-media"
+    "optimize-media": "npm run upload-media",
+    "optimize-videos": "node scripts/optimize-videos.js",
+    "compress-videos": "npm run optimize-videos"
   },
   "dependencies": {
     "@cloudinary/react": "^1.14.3",

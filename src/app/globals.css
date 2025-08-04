@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../styles/enhanced-animations.css";
 
 /* Professional scroll and performance optimizations */
 html {
@@ -6,11 +7,24 @@ html {
   overflow-x: hidden;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Loading animation for splash screen */
+@keyframes loading {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
 }
 
 /* Hardware acceleration for better performance */
@@ -23,6 +37,13 @@ body {
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* Performance optimizations for video */
+.video-optimized {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Magnetic elements */
@@ -222,4 +243,36 @@ body {
 
 .dark .svg-logo {
   filter: invert(1);
+}
+
+/* Performance optimization classes */
+.reduce-motion,
+.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.low-performance {
+  --animation-duration: 0.3s;
+  --stagger-delay: 0.05s;
+}
+
+.low-performance * {
+  animation-duration: var(--animation-duration) !important;
+  transition-duration: var(--animation-duration) !important;
+}
+
+/* Optimize will-change for performance */
+.hero-section.loaded .hero-logo,
+.hero-section.loaded .hero-text-item,
+.hero-section.loaded .hero-arrow,
+.hero-section.loaded .video-container {
+  will-change: auto;
+}
+
+/* Radial gradient utility */
+.bg-radial-gradient {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
 }
