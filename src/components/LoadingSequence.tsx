@@ -143,9 +143,8 @@ export const LoadingSequence = ({ onComplete, videoReady }: LoadingSequenceProps
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-black"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cream dark:bg-background"
       style={{ 
-        background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)',
         backdropFilter: 'blur(20px)'
       }}
     >

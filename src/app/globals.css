@@ -207,6 +207,22 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Enhanced theme fallbacks for better device compatibility */
+  .bg-cream {
+    background-color: #f5f1e4;
+    background-color: var(--cream);
+  }
+  
+  .dark .bg-cream {
+    background-color: #000000;
+    background-color: var(--background);
+  }
+  
+  /* Ensure sections have proper theming on all devices */
+  section {
+    background-color: inherit;
+  }
 }
 
 @layer utilities {

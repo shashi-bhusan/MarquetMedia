@@ -112,7 +112,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className=" text-foreground dark:text-beige px-4 md:px-6 lg:px-8  ">
+    <footer ref={footerRef} className="bg-cream dark:bg-background text-foreground dark:text-beige px-4 md:px-6 lg:px-8">
       <div className=" mx-auto ">
         {/* Large Typography Section */}
         <div className="mb-16 ">

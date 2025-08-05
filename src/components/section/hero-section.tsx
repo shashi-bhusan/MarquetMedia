@@ -97,7 +97,7 @@ export default function HeroSection() {
     <>
       {/* Enhanced Splash Screen */}
       {showSplash && (
-        <div className="fixed inset-0 z-50 bg-white dark:bg-black overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-cream dark:bg-background overflow-hidden">
           
           
           {/* Main Content */}
@@ -141,7 +141,7 @@ export default function HeroSection() {
             {/* Elegant Loader */}
             <div className="w-64 md:w-80">
               {/* Progress Bar */}
-              <div className="relative h-1 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+              <div className="relative h-1 bg-border dark:bg-border rounded-full overflow-hidden">
                 <div 
                   className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-primary/80 rounded-full transition-all duration-300 ease-out"
                   style={{ width: `${Math.min(loadingProgress, 100)}%` }}

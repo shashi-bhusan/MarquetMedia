@@ -125,7 +125,7 @@ export function Dialog({
         className={cn(
           "relative w-full max-w-lg max-h-[90vh] overflow-hidden",
           "bg-background border border-foreground/20 rounded-2xl shadow-2xl",
-          "dark:bg-background dark:border-beige/20",
+          "dark:bg-background dark:border-foreground/20",
           className
         )}
       >
