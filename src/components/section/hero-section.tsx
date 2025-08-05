@@ -97,7 +97,7 @@ export default function HeroSection() {
     <>
       {/* Enhanced Splash Screen */}
       {showSplash && (
-        <div className="fixed inset-0 z-50 bg-cream dark:bg-background overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-background dark:bg-background overflow-hidden">
           
           
           {/* Main Content */}
@@ -177,11 +177,11 @@ export default function HeroSection() {
       <section 
         ref={heroRef}
         id="home" 
-        className={`relative overflow-hidden h-[80vh] bg-cream dark:bg-background text-foreground transition-all duration-1000 ${showSplash ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'}`}
+        className={`relative overflow-hidden h-[80vh] bg-background dark:bg-background text-foreground transition-all duration-1000 ${showSplash ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'}`}
         
       >
         {/* Background Overlay */}
-        <div className="absolute inset-0 bg-cream/90 dark:bg-background/90" />
+        <div className="absolute inset-0 bg-background/90 dark:bg-background/90" />
         
         {/* Main Layout Container */}
         <div className="relative h-full flex flex-col justify-between pt-32 md:pt-32 z-10">
@@ -279,7 +279,7 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           className={`w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-          poster="/marquetmedia-poster.jpg"
+          poster="/image.png"
           onCanPlay={handleVideoCanPlay}
           onError={() => setVideoReady(true)}
           style={{

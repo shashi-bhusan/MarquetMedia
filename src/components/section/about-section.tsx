@@ -41,7 +41,7 @@ export default function AboutSection() {
     }
   }, []);
   return (
-    <section className="min-h-screen pb-16 bg-cream dark:bg-background text-foreground px-4 md:px-6 lg:px-8 pt-40" id="about">
+        <section className="min-h-screen pb-16 bg-background dark:bg-background text-foreground px-4 md:px-6 lg:px-8 pt-40" id="about">
       <div className="flex flex-col items-center-safe mx-auto">
         {/* Main Heading */}
         <div className="text-left flex items-center md:text-center mb-16">

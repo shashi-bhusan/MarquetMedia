@@ -908,7 +908,7 @@ export default function PortfolioSection() {
   return (
     <section 
       id="portfolio"
-      className="min-h-screen bg-cream dark:bg-background py-20 md:py-32"
+      className="min-h-screen bg-background dark:bg-background py-20 md:py-32"
     >
       <div className="max-w mx-auto px-4 md:px-6 lg:px-8">
         

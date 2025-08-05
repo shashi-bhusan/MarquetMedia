@@ -136,7 +136,7 @@ export default function Services() {
         }
       `}</style>
       
-      <section  className="min-h-screen bg-cream dark:bg-background text-foreground px-4 md:px-6 lg:px-8 " id="services">
+            <section  className="min-h-screen bg-background dark:bg-background text-foreground px-4 md:px-6 lg:px-8 " id="services">
       <div className="flex flex-col items-center ">
         {/* line seperator */}
         <div className="w-full border-t border-border/90 mb-8 sm:mb-12 md:mb-16"></div>

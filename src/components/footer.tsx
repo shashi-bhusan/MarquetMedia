@@ -112,7 +112,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-cream dark:bg-background text-foreground dark:text-beige px-4 md:px-6 lg:px-8">
+    <footer ref={footerRef} className="bg-background dark:bg-background text-foreground dark:text-beige px-4 md:px-6 lg:px-8">
       <div className=" mx-auto ">
         {/* Large Typography Section */}
         <div className="mb-16 ">
@@ -146,7 +146,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div ref={navRef} className="flex flex-wrap gap-6 md:gap-8">
+          {/* <div ref={navRef} className="flex flex-wrap gap-6 md:gap-8">
             <a
               href="#home"
               className="font-montserrat text-gray-300 hover:underline dark:text-gray-400 dark:hover:underline transition-all text-sm"
@@ -177,7 +177,7 @@ export default function Footer() {
             >
               Contact
             </a>
-          </div>
+          </div> */}
 
           {/* Social Media Links */}
             <div ref={socialRef} className="flex space-x-3">
@@ -226,7 +226,7 @@ export default function Footer() {
         >
           
             <p className="font-montserrat text-foreground text-sm my-8">
-            © 2025 Marquet Media. All rights reserved. Designed and developed by <a href="https://www.linkedin.com/in/shahid-mollick-763100185/" target="_blank" rel="noopener noreferrer" className="hover:underline">Shahid Mollick</a> and maintained by <a href="https://beenait.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline">BeenaIT Solutions</a>.
+            © 2025 Marquet Media. All rights reserved. Designed and developed by <a href="https://beenait.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline">BeenaIT Solutions</a>.
             </p>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function Home() {
       <CustomCursor />
       
       {/* Main Content */}
-      <div className="min-h-screen bg-background font-montserrat overflow-hidden">
+      <div className="min-h-screen bg-background dark:bg-background font-montserrat overflow-hidden">
         <Header />
         <main>
           <HeroSection />

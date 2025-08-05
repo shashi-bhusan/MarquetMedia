@@ -168,6 +168,7 @@ body {
 
 .dark {
   --background: #000000;
+  --cream: #000000; /* Keep for legacy compatibility */
   --foreground: #F8F4E8;
   --card: #1A1A1A;
   --card-foreground: #F8F4E8;
@@ -198,6 +199,9 @@ body {
   --sidebar-accent-foreground: #F8F4E8;
   --sidebar-border: #404040;
   --sidebar-ring: #8FA479;
+  
+  /* Ensure dark mode background is consistently applied */
+  background-color: #000000;
 }
 
 @layer base {
@@ -209,19 +213,40 @@ body {
   }
   
   /* Enhanced theme fallbacks for better device compatibility */
+  .bg-background {
+    background-color: #F8F4E8 !important; /* Light mode fallback */
+    background-color: var(--background) !important;
+  }
+  
+  .dark .bg-background {
+    background-color: #000000 !important; /* Dark mode fallback */
+    background-color: var(--background) !important;
+  }
+  
+  /* Ensure all sections maintain consistency */
+  section {
+    background-color: inherit;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Force override any conflicting backgrounds */
   .bg-cream {
-    background-color: #f5f1e4;
-    background-color: var(--cream);
+    background-color: #F8F4E8 !important; /* Same as background in light mode */
+    background-color: var(--background) !important;
   }
   
   .dark .bg-cream {
-    background-color: #000000;
-    background-color: var(--background);
+    background-color: #000000 !important; /* Same as background in dark mode */
+    background-color: var(--background) !important;
   }
   
-  /* Ensure sections have proper theming on all devices */
-  section {
-    background-color: inherit;
+  /* Additional CSS custom property fallbacks for older browsers */
+  :root {
+    background-color: #F8F4E8; /* Global fallback */
+  }
+  
+  .dark {
+    background-color: #000000; /* Global dark fallback */
   }
 }
 
@@ -251,7 +276,7 @@ body {
   }
 }
 
-/* Custom SVG inversion for dark mode */
+/* Enhanced SVG inversion for dark mode */
 .svg-logo {
   filter: invert(0);
   transition: filter 0.3s ease;
@@ -259,6 +284,38 @@ body {
 
 .dark .svg-logo {
   filter: invert(1);
+}
+
+/* Universal theme enforcement for problematic devices */
+html.dark,
+html.dark body,
+html.dark section,
+html.dark header,
+html.dark footer,
+html.dark main {
+  background-color: #000000 !important;
+  color: #F8F4E8 !important;
+}
+
+html:not(.dark),
+html:not(.dark) body,
+html:not(.dark) section,
+html:not(.dark) header,
+html:not(.dark) footer,
+html:not(.dark) main {
+  background-color: #F8F4E8 !important;
+  color: #2D2D2D !important;
+}
+
+/* Override any conflicting styles */
+.bg-cream.dark,
+.dark .bg-cream {
+  background-color: #000000 !important;
+}
+
+.bg-cream:not(.dark),
+:not(.dark) .bg-cream {
+  background-color: #F8F4E8 !important;
 }
 
 /* Performance optimization classes */

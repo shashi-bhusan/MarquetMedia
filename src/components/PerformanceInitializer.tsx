@@ -18,7 +18,7 @@ export const PerformanceInitializer = () => {
       // Preload hero video poster
       const posterLink = document.createElement('link');
       posterLink.rel = 'preload';
-      posterLink.href = '/marquetmedia-poster.jpg';
+      posterLink.href = '/image.png';
       posterLink.as = 'image';
       document.head.appendChild(posterLink);
     };

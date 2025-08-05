@@ -45,7 +45,7 @@ export default function RootLayout({
         {/* Preload critical resources */}
         <link rel="preload" href="/MARQUET.svg" as="image" type="image/svg+xml" />
         <link rel="preload" href="/marquetmedia.mp4" as="video" type="video/mp4" />
-        <link rel="preload" href="/marquetmedia-poster.jpg" as="image" type="image/jpeg" />
+        <link rel="preload" href="/image.png" as="image" type="image/png" />
         
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />

@@ -351,7 +351,7 @@ export default function TestimonialSection() {
         }
       `}</style>
       
-    <section className="min-h-screen bg-cream dark:bg-background text-foreground px-2 sm:px-4 md:px-6 lg:px-8 py-20 md:py-40" id="testimonials">
+        <section className="min-h-screen bg-background dark:bg-background text-foreground px-2 sm:px-4 md:px-6 lg:px-8 py-20 md:py-40" id="testimonials">
       
       <div className="flex flex-col items-center mx-auto max-w-8xl">
         

@@ -572,7 +572,7 @@ export default function EnhancedPortfolioSection() {
   return (
     <section 
       id="portfolio"
-      className="min-h-screen bg-cream dark:bg-background"
+      className="min-h-screen bg-background dark:bg-background"
     >
       {/* Hero Section */}
       <div className="relative overflow-hidden py-24 lg:py-32">

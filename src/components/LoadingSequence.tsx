@@ -143,7 +143,7 @@ export const LoadingSequence = ({ onComplete, videoReady }: LoadingSequenceProps
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cream dark:bg-background"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background dark:bg-background"
       style={{ 
         backdropFilter: 'blur(20px)'
       }}

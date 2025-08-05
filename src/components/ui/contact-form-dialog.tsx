@@ -161,7 +161,7 @@ export function ContactFormDialog({ isOpen, onClose }: ContactFormDialogProps) {
             </p>
             
             {/* Brand-consistent info box */}
-            <div className="bg-cream/50 dark:bg-foreground/5 rounded-lg p-4 border border-foreground/10">
+            <div className="bg-background/50 dark:bg-background/5 rounded-lg p-4 border border-foreground/10">
               <p className="text-sm text-foreground/80 font-montserrat">
                 <strong className="font-baskerville">What's next?</strong> We're crafting a personalized strategy just for you. Check your inbox for a confirmation email! 
               </p>

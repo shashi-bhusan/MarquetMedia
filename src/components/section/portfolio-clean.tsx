@@ -544,7 +544,7 @@ export default function PortfolioSection() {
     : portfolioReels.filter(reel => reel.category === selectedCategory);
 
   return (
-    <section className="min-h-screen bg-cream dark:bg-background text-foreground relative overflow-hidden" id="portfolio">
+        <section className="min-h-screen bg-background dark:bg-background text-foreground relative overflow-hidden" id="portfolio">
       {/* Section Divider */}
       <div className="w-full border-t border-border/90 mb-16"></div>
       
