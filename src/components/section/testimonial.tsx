@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useScrollAnimations, ScrollAnimations } from '@/components/ScrollAnimations';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+import OptimizedThemeImage from '@/components/ui/OptimizedThemeImage';
 
 // Client logo mapping - explicit mapping provided by client
 const clientLogoMapping = {
@@ -125,13 +125,16 @@ const ClientLogo = ({ brandName }: { brandName: string }) => {
 
   return (
     <div className="flex items-center justify-center h-16 w-24 md:h-20 md:w-32 lg:h-24 lg:w-36">
-      <Image
-        src={logoSrc}
+      <OptimizedThemeImage
+        lightSrc={logoMapping.lightLogo}
+        darkSrc={logoMapping.darkLogo}
+        isDarkMode={isDarkMode}
         alt={`${brandName} logo`}
         width={144}
         height={96}
         className="h-full w-auto max-w-full object-contain transition-all duration-300 filter hover:brightness-110"
         priority
+        preloadBoth={true}
       />
     </div>
   );

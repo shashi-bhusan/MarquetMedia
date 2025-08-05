@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProfessionalButton } from '@/components/ui/professional-button';
 import { ArrowUpRight, ExternalLink, Play } from 'lucide-react';
+import OptimizedThemeImage from '@/components/ui/OptimizedThemeImage';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollAnimations } from '@/components/ScrollAnimations';
@@ -500,13 +501,15 @@ const DualRowLogoGrid = () => {
         <div className="p-8 h-full flex items-center justify-center relative">
           {/* Logo */}
           <div className="flex items-center justify-center">
-            <Image
-              src={logoSrc}
+            <OptimizedThemeImage
+              lightSrc={client.lightLogo}
+              darkSrc={client.darkLogo}
+              isDarkMode={isDarkMode}
               alt={client.name}
               width={280}
               height={280}
-              className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 
-              group-hover:opacity-100"
+              className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100"
+              preloadBoth={true}
             />
           </div>
 
