@@ -189,6 +189,13 @@ const ReelVideoPlayer = ({
         playsInline
         autoPlay
         preload="metadata"
+        poster={
+          videoSrc.includes('/reel-') 
+            ? `/thumbnails/reels/${videoSrc.split('/').pop()?.replace('.mp4', '.jpg')}` 
+            : videoSrc.includes('/bts/') 
+            ? `/thumbnails/bts/${videoSrc.split('/').pop()?.replace(/\.(mp4|MOV)$/i, '.jpg')}` 
+            : undefined
+        }
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
@@ -552,6 +559,11 @@ const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: nu
         muted
         playsInline
         preload="metadata"
+        poster={
+          video.videoSrc.includes('/bts/') 
+            ? `/thumbnails/bts/${video.videoSrc.split('/').pop()?.replace(/\.(mp4|MOV)$/i, '.jpg')}` 
+            : undefined
+        }
       >
         <source src={video.videoSrc} type="video/quicktime" />
         <source src={video.videoSrc} type="video/mp4" />

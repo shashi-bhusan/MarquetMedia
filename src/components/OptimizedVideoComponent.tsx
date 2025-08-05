@@ -110,6 +110,48 @@ class PerformanceMonitor {
 const performanceMonitor = PerformanceMonitor.getInstance();
 
 /**
+ * Helper function to get poster URL from src or publicId
+ */
+const getPosterUrl = (publicId: string, src?: string): string | undefined => {
+  // Try src first if available
+  if (src) {
+    const filename = src.split('/').pop()?.replace(/\.(mp4|mov|webm)$/i, '') || '';
+    
+    // Check for reel thumbnails
+    if (filename.startsWith('reel-')) {
+      return `/thumbnails/reels/${filename}.jpg`;
+    }
+    
+    // Check for main video thumbnail
+    if (filename === 'marquetmedia') {
+      return `/thumbnails/hero/marquetmedia.jpg`;
+    }
+    
+    // Check for BTS thumbnails
+    const btsNames = ['C0442', 'IMG_0038', 'IMG_0160', 'IMG_0397', 'IMG_1770', 'IMG_2538', 'IMG_3287', 'IMG_3288', 'IMG_7721'];
+    if (btsNames.includes(filename)) {
+      return `/thumbnails/bts/${filename}.jpg`;
+    }
+  }
+  
+  // Try publicId patterns
+  if (publicId.startsWith('reel-')) {
+    return `/thumbnails/reels/${publicId}.jpg`;
+  }
+  
+  if (publicId === 'marquetmedia') {
+    return `/thumbnails/hero/marquetmedia.jpg`;
+  }
+  
+  const btsNames = ['C0442', 'IMG_0038', 'IMG_0160', 'IMG_0397', 'IMG_1770', 'IMG_2538', 'IMG_3287', 'IMG_3288', 'IMG_7721'];
+  if (btsNames.includes(publicId)) {
+    return `/thumbnails/bts/${publicId}.jpg`;
+  }
+  
+  return undefined;
+};
+
+/**
  * Optimized Video Component with Deduplication and Memory Management
  */
 interface OptimizedVideoProps {
@@ -287,6 +329,7 @@ export const OptimizedVideoComponent = memo<OptimizedVideoProps>(({
         muted={muted}
         loop={loop}
         playsInline={playsInline}
+        poster={getPosterUrl(publicId, src)}
         data-public-id={publicId}
       />
 

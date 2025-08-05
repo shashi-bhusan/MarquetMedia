@@ -279,7 +279,7 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           className={`w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-          poster="/image.png"
+          poster="/thumbnails/hero/marquetmedia.jpg"
           onCanPlay={handleVideoCanPlay}
           onError={() => setVideoReady(true)}
           style={{

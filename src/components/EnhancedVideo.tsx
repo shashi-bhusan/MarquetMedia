@@ -110,11 +110,32 @@ export const EnhancedVideo = memo<EnhancedVideoProps>(({
 
   const posterUrl = useMemo(() => {
     if (poster) return poster;
-    if (!publicId) return undefined;
     
-    // Get poster from asset mapping or generate from video
+    // Try to get poster from src first
+    if (src) {
+      const filename = src.split('/').pop()?.replace(/\.(mp4|mov|webm)$/i, '') || '';
+      
+      // Check for reel thumbnails
+      if (filename.startsWith('reel-')) {
+        return `/thumbnails/reels/${filename}.jpg`;
+      }
+      
+      // Check for main video thumbnail
+      if (filename === 'marquetmedia') {
+        return `/thumbnails/hero/marquetmedia.jpg`;
+      }
+      
+      // Check for BTS thumbnails
+      const btsNames = ['C0442', 'IMG_0038', 'IMG_0160', 'IMG_0397', 'IMG_1770', 'IMG_2538', 'IMG_3287', 'IMG_3288', 'IMG_7721'];
+      if (btsNames.includes(filename)) {
+        return `/thumbnails/bts/${filename}.jpg`;
+      }
+    }
+    
+    // Fallback to asset mapping
+    if (!publicId) return undefined;
     return assetMapping.posters[publicId as keyof typeof assetMapping.posters];
-  }, [poster, publicId]);
+  }, [poster, src, publicId]);
 
   // Performance monitoring
   const updatePerformanceMetrics = useCallback((updates: any) => {

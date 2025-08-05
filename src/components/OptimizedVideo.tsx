@@ -28,6 +28,28 @@ const getCloudinaryPublicId = (localSrc: string): string | null => {
   return assetMapping.videos[filename as keyof typeof assetMapping.videos] || null;
 };
 
+const getPosterUrl = (localSrc: string): string | undefined => {
+  const filename = localSrc.split('/').pop()?.replace(/\.(mp4|mov|webm)$/i, '') || '';
+  
+  // Check for reel thumbnails
+  if (filename.startsWith('reel-')) {
+    return `/thumbnails/reels/${filename}.jpg`;
+  }
+  
+  // Check for main video thumbnail
+  if (filename === 'marquetmedia') {
+    return `/thumbnails/hero/marquetmedia.jpg`;
+  }
+  
+  // Check for BTS thumbnails (uppercase extensions in file list)
+  const btsNames = ['C0442', 'IMG_0038', 'IMG_0160', 'IMG_0397', 'IMG_1770', 'IMG_2538', 'IMG_3287', 'IMG_3288', 'IMG_7721'];
+  if (btsNames.includes(filename)) {
+    return `/thumbnails/bts/${filename}.jpg`;
+  }
+  
+  return undefined;
+};
+
 // Improved quality settings - prioritize quality over file size
 const getDeviceQuality = () => {
   if (typeof window === 'undefined') return 'auto:best';
@@ -95,6 +117,7 @@ export const OptimizedVideo = forwardRef<HTMLVideoElement, OptimizedVideoProps>(
           playsInline={playsInline}
           autoPlay={autoPlay}
           preload={preload}
+          poster={getPosterUrl(src)}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           onMouseMove={onMouseMove}
