@@ -3,24 +3,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ProfessionalButton } from "@/components/ui/professional-button";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const darkMode = localStorage.getItem("darkMode") === "true";
-      setIsDarkMode(darkMode);
-      if (darkMode) {
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -103,20 +93,6 @@ export default function Header() {
       window.removeEventListener("scroll", optimizedScrollHandler);
     };
   }, [activeSection]);
-
-  const toggleDarkMode = () => {
-    if (typeof window === 'undefined') return;
-    
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem("darkMode", newDarkMode.toString());
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
 
   const handleNavClick = (sectionId: string) => {
     if (typeof window === 'undefined') return;
@@ -207,18 +183,7 @@ export default function Header() {
 
             {/* Right Side - Desktop */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleDarkMode}
-                className="w-10 h-10 rounded-full border border-border/30 text-foreground hover:bg-foreground/10 hover:border-foreground/50 transition-all duration-300"
-              >
-                {isDarkMode ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
-              </Button>
+              <ThemeToggle variant="dropdown" />
               
               <ProfessionalButton
                 variant="professional"
@@ -234,18 +199,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center space-x-3">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleDarkMode}
-                className="w-9 h-9 rounded-full border border-border/30 text-foreground hover:bg-foreground/10"
-              >
-                {isDarkMode ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
-              </Button>
+              <ThemeToggle />
               
               <Button
                 variant="ghost"

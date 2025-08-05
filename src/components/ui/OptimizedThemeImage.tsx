@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useImageCache } from '@/hooks/useImageCache';
 
@@ -44,11 +44,13 @@ const OptimizedThemeImage = ({
   });
 
   const handleLoad = () => {
+    console.log("first")
     setImageLoaded(true);
     onLoad?.();
   };
 
   const handleError = () => {
+    console.error(`Failed to load image: ${imageUrl}`);
     setImageError(true);
     onError?.();
   };

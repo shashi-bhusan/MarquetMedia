@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat } from "next/font/google";
 import "./globals.css";
 import { PerformanceInitializer } from "@/components/PerformanceInitializer";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const baskerville = Libre_Baskerville({
   variable: "--font-baskerville",
@@ -59,8 +60,10 @@ export default function RootLayout({
       <body
         className={`${baskerville.variable} ${montserrat.variable} antialiased text-smooth`}
       >
-        <PerformanceInitializer />
-        {children}
+        <ThemeProvider>
+          <PerformanceInitializer />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

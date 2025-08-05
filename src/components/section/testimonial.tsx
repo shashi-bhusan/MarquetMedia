@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useScrollAnimations, ScrollAnimations } from '@/components/ScrollAnimations';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import OptimizedThemeImage from '@/components/ui/OptimizedThemeImage';
+import { useLegacyTheme } from '@/hooks/useLegacyTheme';
 
 // Client logo mapping - explicit mapping provided by client
 const clientLogoMapping = {
@@ -50,78 +51,13 @@ const testimonials = [
 
 // Client Logo Component with theme support - Enhanced size
 const ClientLogo = ({ brandName }: { brandName: string }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    // Enhanced dark mode detection to match header component logic
-    const checkDarkMode = () => {
-      if (typeof window === 'undefined') return;
-      
-      // Check localStorage first (matches header component logic)
-      const storedDarkMode = localStorage.getItem("darkMode");
-      
-      // If localStorage has a value, use it
-      if (storedDarkMode !== null) {
-        const isDark = storedDarkMode === "true";
-        setIsDarkMode(isDark);
-        return;
-      }
-      
-      // Fallback: check if dark class is present on document element
-      const hasExplicitDarkClass = document.documentElement.classList.contains('dark');
-      
-      // If no explicit class, fall back to system preference
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      // Final determination
-      const isDark = hasExplicitDarkClass || systemPrefersDark;
-      setIsDarkMode(isDark);
-    };
-
-    // Initial check
-    checkDarkMode();
-
-    // Listen for theme changes on document element
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          checkDarkMode();
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, { 
-      attributes: true, 
-      attributeFilter: ['class'] 
-    });
-
-    // Listen for localStorage changes (for theme toggle)
-    const handleStorageChange = () => {
-      checkDarkMode();
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', checkDarkMode);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('storage', handleStorageChange);
-      mediaQuery.removeEventListener('change', checkDarkMode);
-    };
-  }, []);
+  const { isDarkMode } = useLegacyTheme();
 
   const logoMapping = clientLogoMapping[brandName as keyof typeof clientLogoMapping];
   
   if (!logoMapping) {
     return null; // Return null if no logo mapping found
   }
-
-  const logoSrc = isDarkMode ? logoMapping.darkLogo : logoMapping.lightLogo;
 
   return (
     <div className="flex items-center justify-center h-16 w-24 md:h-20 md:w-32 lg:h-24 lg:w-36">
@@ -141,6 +77,8 @@ const ClientLogo = ({ brandName }: { brandName: string }) => {
 };
 
 export default function TestimonialSection() {
+
+  // console.log("re render")
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
