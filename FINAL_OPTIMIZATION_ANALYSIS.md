@@ -19,7 +19,7 @@ Your codebase already implements **industry-leading** optimizations that surpass
    - Emergency memory cleanup on pressure
 
 3. **Adaptive Bitrate Streaming**
-   - Real-time quality adjustment based on buffer health
+   - Real-time quality adjustment based on buffer health.
    - Connection speed monitoring (2G → 4G)
    - Save-data mode detection
    - Automatic quality switching during playback
