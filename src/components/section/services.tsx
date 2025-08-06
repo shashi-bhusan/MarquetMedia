@@ -46,70 +46,70 @@ export default function Services() {
       icon: Share2,
       title: "social media management",
       description: "Strategy, content creation, calendar planning, community management. For brands who want to engage, not just post.",
-      illustration: "/illustration/digital-nomad-working-near-beach.svg",
+      illustration: "/illustration 2/social media management.svg",
       size: "large"
     },
     {
       icon: Play,
       title: "production & shoots",
       description: "Lifestyle shoots, product photography, brand reels, campaign visuals. We tell your story through scroll-stopping visuals.",
-      illustration: "/illustration/having-fun.svg",
+      illustration: "/illustration 2/production and shoots.svg",
       size: "large"
     },
     {
       icon: Users,
       title: "influencer marketing",
       description: "Collaborations with local and regional creators. Authentic voices, amplified impact.",
-      illustration: "/illustration/digital-nomad-working-in-airport.svg",
+      illustration: "/illustration 2/social media collabolrations.svg",
       size: "large"
     },
     {
       icon: Target,
       title: "performance campaigns",
       description: "Meta & Google ads, analytics, lead funnels. Numbers-driven strategies that deliver.",
-      illustration: "/illustration/get-a-job-promotion.svg",
+      illustration: "/illustration 2/perfomance campaigns.svg",
       size: "large"
     },
     {
       icon: Newspaper,
       title: "media buying",
       description: "Newspaper ads, hoardings, FM radio placements. Integrated media, locally executed.",
-      illustration: "/illustration/financial-literacy.svg",
+      illustration: "/illustration 2/media buying.svg",
       size: "large"
     },
     {
       icon: Calendar,
       title: "corporate event management",
       description: "Brand launches, internal activations, press events. Designed with detail, delivered with polish.",
-      illustration: "/illustration/designer-working.svg",
+      illustration: "/illustration 2/coorporate event.svg",
       size: "large"
     },
     {
       icon: Lightbulb,
       title: "brand strategy & consulting",
       description: "Audits, positioning, brand language, campaign frameworks. For brands that want to get it right from the inside out.",
-      illustration: "/illustration/designer-desk.svg",
+      illustration: "/illustration 2/brand strategy.svg",
       size: "large"
     },
     {
       icon: MessageSquare,
       title: "sms & whatsapp blasts",
       description: "Targeted messaging campaigns for direct customer engagement. Reach your audience where they are most active.",
-      illustration: "/illustration/grow-plants-home-garden.svg",
+      illustration: "/illustration 2/whatsapp blasts.svg",
       size: "large"
     },
     {
       icon: Smartphone,
       title: "whatsapp for business",
       description: "Professional customer communication solutions. Build stronger relationships through instant, personalized interactions.",
-      illustration: "/illustration/digital-nomad-working-near-beach.svg",
+      illustration: "/illustration 2/whatsapp for business.svg",
       size: "large"
     },
     {
       icon: Code,
       title: "website development",
       description: "Cutting-edge websites and digital experiences that combine aesthetic excellence with seamless functionality, optimized for performance and user engagement.",
-      illustration: "/illustration/digital-nomad-working-in-airport.svg",
+      illustration: "/illustration 2/website development.svg",
       size: "large"
     }
   ];
@@ -234,13 +234,13 @@ export default function Services() {
 
                     {/* Large Illustration */}
                     <div className="flex justify-center items-end mt-auto">
-                      <div className="w-32 h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 relative">
+                      <div className="w-40 h-40 lg:w-52 lg:h-52 xl:w-60 xl:h-60 relative">
                         <Image
                           src={service.illustration}
                           alt={service.title}
                           fill
                           className="object-contain svg-logo transition-all duration-300 group-hover:scale-105"
-                          sizes="(max-width: 1024px) 128px, (max-width: 1280px) 160px, 192px"
+                          sizes="(max-width: 1024px) 160px, (max-width: 1280px) 208px, 240px"
                         />
                       </div>
                     </div>
@@ -294,13 +294,13 @@ export default function Services() {
 
                     {/* Large Illustration */}
                     <div className="flex justify-center items-end mt-auto">
-                      <div className="w-32 h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 relative">
+                      <div className="w-40 h-40 lg:w-52 lg:h-52 xl:w-60 xl:h-60 relative">
                         <Image
                           src={service.illustration}
                           alt={service.title}
                           fill
                           className="object-contain svg-logo transition-all duration-300 group-hover:scale-105"
-                          sizes="(max-width: 1024px) 128px, (max-width: 1280px) 160px, 192px"
+                          sizes="(max-width: 1024px) 160px, (max-width: 1280px) 208px, 240px"
                         />
                       </div>
                     </div>
