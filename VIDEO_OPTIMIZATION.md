@@ -1,6 +1,6 @@
 # Video Optimization & Loading Animations
 
-This document outlines the enhanced video optimization and loading animation system implemented in the Marquet Media website.
+This document outlines the enhanced video optimization and loading animation system implemented in the Marquet Media websites.
 
 ## Features
 
