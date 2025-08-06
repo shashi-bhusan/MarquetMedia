@@ -202,17 +202,109 @@ export default function HeroSection() {
               </div>
             </header>
             {/* Bottom Grid */}
-            <div ref={textGridRef} className="mt-auto mb-8">
-              <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-full mx-auto">
+            <div ref={textGridRef} className="mt-auto mb-8 px-4 md:px-0">
+              {/* Mobile Layout (1 column) */}
+              <div className="block md:hidden space-y-6">
+                {/* Text Content */}
+                <div className="space-y-4">
+                  <p className="text-xs font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                    Where strategy meets subtle storytelling
+                  </p>
+                  <p className="text-xs font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                    Elevating brands across Jharkhand and East India through thoughtful marketing
+                  </p>
+                </div>
+                
+                {/* CTA and Arrow Row */}
+                <div className="flex items-center justify-between">
+                  <ProfessionalButton
+                    variant="professional"
+                    size="lg"
+                    className="font-montserrat font-medium px-4 py-2 text-xs uppercase tracking-wider"
+                    magneticStrength={20}
+                    hoverScale={1.03}
+                    showContactForm={true}
+                  >
+                    Start A Project
+                  </ProfessionalButton>
+                  
+                  <div className="w-8 h-8 flex items-center justify-center">
+                    <svg 
+                      className="w-6 h-6 rotate-90 text-foreground" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={1} 
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tablet Layout (2x2 grid) */}
+              <div className="hidden md:block lg:hidden">
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                  {/* First Text Grid */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                      Where strategy meets subtle storytelling
+                    </p>
+                  </div>
+                  {/* Second Text Grid */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                      Elevating brands across Jharkhand and East India through thoughtful marketing
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Bottom row with CTA and Arrow */}
+                <div className="flex items-end justify-between">
+                  <ProfessionalButton
+                    variant="professional"
+                    size="lg"
+                    className="font-montserrat font-medium px-6 py-3 text-xs uppercase tracking-wider"
+                    magneticStrength={20}
+                    hoverScale={1.03}
+                    showContactForm={true}
+                  >
+                    Start A Project
+                  </ProfessionalButton>
+                  
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    <svg 
+                      className="w-8 h-8 rotate-90 text-foreground" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={1} 
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop Layout (4 columns) */}
+              <div className="hidden lg:grid grid-cols-4 gap-8 max-w-full mx-auto">
                 {/* First Text Grid */}
                 <div className="space-y-2">
-                  <p className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                  <p className="text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
                     Where strategy meets subtle storytelling
                   </p>
                 </div>
                 {/* Second Text Grid */}
                 <div className="space-y-2">
-                  <p className="text-xs md:text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
+                  <p className="text-sm font-montserrat text-foreground uppercase leading-4 tracking-tighter">
                     Elevating brands across Jharkhand and East India through thoughtful marketing
                   </p>
                 </div>
@@ -231,9 +323,9 @@ export default function HeroSection() {
                 </div>
                 {/* Arrow Grid */}
                 <div className="flex justify-end items-start">
-                  <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
+                  <div className="w-10 h-10 flex items-center justify-center">
                     <svg 
-                      className="w-6 h-6 md:w-8 rotate-90 md:h-8 text-foreground" 
+                      className="w-8 h-8 rotate-90 text-foreground" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"

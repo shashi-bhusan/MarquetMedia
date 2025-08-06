@@ -143,39 +143,101 @@ export default function Services() {
         
         {/* Header Section */}
         <div ref={headerRef} className="w-full mb-12 md:mb-16 lg:mb-32">
-          {/* Main Content Grid */}
-          <div className="flex flex-row justify-between item-end w-full">
-            
-            {/* Left Side - Main Heading */}
-            <div className="lg:col-span-7 order-1">
-              <h2 className="text-3xl text-wrap sm:text-4xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-foreground leading-tighter  text-left ">
+          {/* Mobile Layout (< md) */}
+          <div className="block md:hidden">
+            <div className="space-y-8">
+              {/* Main Heading */}
+              <h2 className="text-3xl sm:text-4xl font-light text-foreground leading-tighter text-left">
                 OUR
                 <br />
-                <span className="sm:hidden" />
                 <span className="italic font-baskerville tracking-tighter font-light">services</span>
-               
-              
               </h2>
+              
+              {/* Description */}
+              <p className="text-xs font-montserrat font-medium uppercase leading-tight text-foreground/80">
+                We bring clarity to chaos. Whether it's digital, traditional, or somewhere in between, we partner with you to craft campaigns rooted in insight and executed with intention
+              </p>
+              
+              {/* CTA Button */}
+              <div className="pt-2">
+                <ProfessionalButton 
+                  variant="professional" 
+                  size="lg"
+                  className="font-montserrat font-medium px-6 py-3 text-xs w-full uppercase tracking-wider"
+                  magneticStrength={25}
+                  hoverScale={1.03}
+                  showContactForm={true}
+                >
+                  Partner with Us
+                  <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                </ProfessionalButton>
+              </div>
             </div>
+          </div>
 
-            {/* Right Side - Description & CTA */}
-            <div className="lg:col-span-5 order-2 lg:order-2 flex flex-col justify-center lg:justify-end">
-              <div className="space-y-6 lg:space-y-8">
-                <p className="text-xs sm:text-sm font-montserrat font-medium max-w-full lg:max-w-md uppercase leading-tight text-foreground/80">
-                  We bring clarity to chaos. Whether it’s digital, traditional, or somewhere in between, we partner with you to craft campaigns rooted in insight and executed with intention
+          {/* Tablet Layout (md to lg) */}
+          <div className="hidden md:block lg:hidden">
+            <div className="space-y-10">
+              {/* Main Heading */}
+              <h2 className="text-4xl md:text-5xl font-light text-foreground leading-tighter text-left">
+                OUR
+                <br />
+                <span className="italic font-baskerville tracking-tighter font-light">services</span>
+              </h2>
+              
+              {/* Description and CTA in a row */}
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start sm:items-end justify-between">
+                <p className="text-sm font-montserrat font-medium max-w-md uppercase leading-tight text-foreground/80 flex-1">
+                  We bring clarity to chaos. Whether it's digital, traditional, or somewhere in between, we partner with you to craft campaigns rooted in insight and executed with intention
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex-shrink-0">
                   <ProfessionalButton 
                     variant="professional" 
                     size="lg"
-                    className="font-montserrat font-medium px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm w-full sm:w-auto uppercase tracking-wider"
+                    className="font-montserrat font-medium px-8 py-4 text-sm uppercase tracking-wider"
                     magneticStrength={25}
                     hoverScale={1.03}
                     showContactForm={true}
                   >
                     Partner with Us
-                    <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </ProfessionalButton>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout (lg+) */}
+          <div className="hidden lg:flex flex-row justify-between items-end w-full">
+            
+            {/* Left Side - Main Heading */}
+            <div className="flex-1 max-w-2xl">
+              <h2 className="text-5xl xl:text-7xl font-light text-foreground leading-tighter text-left">
+                OUR
+                <br />
+                <span className="italic font-baskerville tracking-tighter font-light">services</span>
+              </h2>
+            </div>
+
+            {/* Right Side - Description & CTA */}
+            <div className="flex flex-col justify-end max-w-lg">
+              <div className="space-y-8">
+                <p className="text-sm font-montserrat font-medium uppercase leading-tight text-foreground/80">
+                  We bring clarity to chaos. Whether it's digital, traditional, or somewhere in between, we partner with you to craft campaigns rooted in insight and executed with intention
+                </p>
+                
+                <div>
+                  <ProfessionalButton 
+                    variant="professional" 
+                    size="lg"
+                    className="font-montserrat font-medium px-8 py-4 text-sm uppercase tracking-wider"
+                    magneticStrength={25}
+                    hoverScale={1.03}
+                    showContactForm={true}
+                  >
+                    Partner with Us
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </ProfessionalButton>
                 </div>
               </div>
