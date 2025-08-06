@@ -78,7 +78,6 @@ const ClientLogo = ({ brandName }: { brandName: string }) => {
 
 export default function TestimonialSection() {
 
-  // console.log("re render")
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);

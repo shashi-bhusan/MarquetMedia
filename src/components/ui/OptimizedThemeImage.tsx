@@ -44,7 +44,6 @@ const OptimizedThemeImage = ({
   });
 
   const handleLoad = () => {
-    console.log("first")
     setImageLoaded(true);
     onLoad?.();
   };
