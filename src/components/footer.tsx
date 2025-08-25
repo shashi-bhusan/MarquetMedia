@@ -226,7 +226,7 @@ export default function Footer() {
         >
           
             <p className="font-montserrat text-foreground text-sm my-8">
-            © 2025 Marquet Media. All rights reserved. Maintained by <a href="https://beenait.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline">BeenaIT Solutions</a>.
+            © 2025 Marquet Media. All rights reserved. Maintained by <a href="https://beenait.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline">beenaIT Solutions</a>.
             </p>
         </div>
       </div>
