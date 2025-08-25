@@ -68,7 +68,7 @@ const ClientLogo = ({ brandName }: { brandName: string }) => {
         alt={`${brandName} logo`}
         width={144}
         height={96}
-        className="h-full w-auto max-w-full object-contain transition-all duration-300 filter hover:brightness-110"
+  className={`h-full w-auto max-w-full object-contain transition-all duration-300 filter hover:brightness-110${isDarkMode ? ' grayscale brightness-200 contrast-200' : ''}`}
         priority
         preloadBoth={true}
       />

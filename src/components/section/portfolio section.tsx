@@ -323,7 +323,10 @@ const lightLogos = [
   'Frame 18.png',
   'Frame 19.png',
   'Frame 20.png',
-  'Frame 21.png'
+  'Frame 21.png',
+  'Frame 22.png',
+  'Frame 23.png',
+  'Frame 24.png',
 ];
 
 const darkLogos = [
@@ -346,7 +349,11 @@ const darkLogos = [
   'Frame 17.png',
   'Frame 18.png',
   'Frame 19.png',
-  'Frame 20.png'
+  'Frame 20.png',
+  'Frame 21.png',
+  'Frame 22.png',
+  'Frame 23.png',
+  'Frame 24.png',
 ];
 
 // Generate client logos array dynamically
@@ -436,11 +443,19 @@ const DualRowLogoGrid = () => {
 
   const { isDarkMode } = useLegacyTheme();
 
+  // Split logos into two dynamic halves so all logos (including frames 21-24) are shown
+  const half = Math.ceil(clientLogos.length / 2);
+  const topLogos = clientLogos.slice(0, half);
+  const bottomLogos = clientLogos.slice(half);
 
   // Create logo boxes similar to service section with theme support
   const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => {
     
     const logoSrc = isDarkMode ? client.darkLogo : client.lightLogo;
+  // Apply extra invert filter for specific frames in dark mode (21-24)
+  const darkBasename = client.darkLogo.split('/').pop() || '';
+  const normalizedBasename = decodeURIComponent(darkBasename).replace(/\s+/g, ' ').trim();
+  const shouldInvertDark = isDarkMode && /Frame\s*2[1-4]\.png$/i.test(normalizedBasename);
 
     return (
       <div 
@@ -450,16 +465,16 @@ const DualRowLogoGrid = () => {
         <div className="p-8 h-full flex items-center justify-center relative">
           {/* Logo */}
           <div className="flex items-center justify-center">
-            <OptimizedThemeImage
-              lightSrc={client.lightLogo}
-              darkSrc={client.darkLogo}
-              isDarkMode={isDarkMode}
-              alt={client.name}
-              width={280}
-              height={280}
-              className="h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100"
-              preloadBoth={true}
-            />
+              <OptimizedThemeImage
+                lightSrc={client.lightLogo}
+                darkSrc={client.darkLogo}
+                isDarkMode={isDarkMode}
+                alt={client.name}
+                width={280}
+                height={280}
+                className={`h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100${isDarkMode ? ' filter grayscale brightness-200 contrast-200' : ''}${shouldInvertDark ? ' invert' : ''}`}
+                preloadBoth={true}
+              />
           </div>
 
           {/* Corner accent */}
@@ -473,29 +488,30 @@ const DualRowLogoGrid = () => {
 
   return (
     <div className="w-full pb-12 space-y-0">
-      {/* Top Row - Scrolling Left - First 10 logos */}
+
+      {/* Top Row - Scrolling Left - first half of logos */}
       <div className="overflow-hidden">
         <div ref={topRowRef} className="flex">
-          {/* First set - first 10 logos */}
-          {clientLogos.slice(0, 10).map((client, index) => (
+          {/* First set - dynamic top logos */}
+          {topLogos.map((client, index) => (
             <LogoBox key={`top-first-${index}`} client={client} index={index} />
           ))}
           {/* Duplicate for seamless loop */}
-          {clientLogos.slice(0, 10).map((client, index) => (
+          {topLogos.map((client, index) => (
             <LogoBox key={`top-second-${index}`} client={client} index={index} />
           ))}
         </div>
       </div>
 
-      {/* Bottom Row - Scrolling Right - Last 10 logos */}
+      {/* Bottom Row - Scrolling Right - remaining logos */}
       <div className="overflow-hidden">
         <div ref={bottomRowRef} className="flex">
-          {/* First set - last 10 logos */}
-          {clientLogos.slice(10, 20).map((client, index) => (
+          {/* First set - dynamic bottom logos */}
+          {bottomLogos.map((client, index) => (
             <LogoBox key={`bottom-first-${index}`} client={client} index={index} />
           ))}
           {/* Duplicate for seamless loop */}
-          {clientLogos.slice(10, 20).map((client, index) => (
+          {bottomLogos.map((client, index) => (
             <LogoBox key={`bottom-second-${index}`} client={client} index={index} />
           ))}
         </div>
