@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
+import { Instagram, Twitter, Linkedin, Mail, Phone } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import ScrollAnimations from "./ScrollAnimations";
@@ -179,8 +179,16 @@ export default function Footer() {
             </a>
           </div> */}
 
-          {/* Social Media Links */}
-            <div ref={socialRef} className="flex space-x-3">
+          {/* Social Media Links + Phone */
+          }
+            <div ref={socialRef} className="flex items-center space-x-3">
+              <a
+                href="tel:+918580131505"
+                className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
+                aria-label="Call us at +91 85801 31505"
+              >
+                <Phone className="w-5 h-5 text-foreground dark:text-beige group-hover:text-beige dark:group-hover:text-foreground transition-colors duration-300" />
+              </a>
               <a
                 href="https://www.instagram.com/marquetmedia?igsh=cHk3ejZ5d3FvZm5q&utm_source=qr"
                 className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 group border border-foreground dark:border-beige"
