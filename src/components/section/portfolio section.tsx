@@ -455,7 +455,25 @@ const DualRowLogoGrid = () => {
   // Apply extra invert filter for specific frames in dark mode (21-24)
   const darkBasename = client.darkLogo.split('/').pop() || '';
   const normalizedBasename = decodeURIComponent(darkBasename).replace(/\s+/g, ' ').trim();
-  const shouldInvertDark = isDarkMode && /Frame\s*2[1-4]\.png$/i.test(normalizedBasename);
+  
+  // Frame 23 should have ONLY grayscale + high brightness in dark mode (to appear white)
+  const isFrame23 = /Frame\s*23\.png$/i.test(normalizedBasename);
+  const shouldInvertDark = isDarkMode && /Frame\s*2[1-4]\.png$/i.test(normalizedBasename) && !isFrame23;
+  
+  // Build className - Frame 23 gets only grayscale + high brightness (appears white)
+  let imageClassName = 'h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100';
+  if (isDarkMode) {
+    if (isFrame23) {
+      // Frame 23: only grayscale with very high brightness to appear white
+      imageClassName += ' filter grayscale brightness-[3]';
+    } else {
+      // Other frames: keep existing filters
+      imageClassName += ' filter grayscale brightness-200 contrast-200';
+      if (shouldInvertDark) {
+        imageClassName += ' invert';
+      }
+    }
+  }
 
     return (
       <div 
@@ -472,7 +490,7 @@ const DualRowLogoGrid = () => {
                 alt={client.name}
                 width={280}
                 height={280}
-                className={`h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100${isDarkMode ? ' filter grayscale brightness-200 contrast-200' : ''}${shouldInvertDark ? ' invert' : ''}`}
+                className={imageClassName}
                 preloadBoth={true}
               />
           </div>
