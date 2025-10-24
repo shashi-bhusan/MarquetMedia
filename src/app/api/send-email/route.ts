@@ -121,10 +121,15 @@ export async function POST(request: NextRequest) {
       </div>
     `;
 
-    // Send email to business
+    // Send email to business (supports multiple comma-separated emails)
+    const businessEmails = process.env.BUSINESS_EMAIL!
+      .split(',')
+      .map(email => email.trim())
+      .filter(email => email.length > 0);
+
     const businessEmailResult = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
-      to: [process.env.BUSINESS_EMAIL!],
+      to: businessEmails,
       subject: `New Collaboration Request from ${name} - ${businessName}`,
       html: businessEmailHtml,
     });
