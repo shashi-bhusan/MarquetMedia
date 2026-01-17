@@ -327,6 +327,9 @@ const lightLogos = [
   'Frame 22.png',
   'Frame 23.png',
   'Frame 24.png',
+  'jiasowa.png',
+  'whatsapp.png',
+  'eylex.png',
 ];
 
 const darkLogos = [
@@ -354,6 +357,9 @@ const darkLogos = [
   'Frame 22.png',
   'Frame 23.png',
   'Frame 24.png',
+  'jiasowa.png',
+  'whatsapp.png',
+  'eylex.png',
 ];
 
 // Generate client logos array dynamically
