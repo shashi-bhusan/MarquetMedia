@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useImageCache } from '@/hooks/useImageCache';
 
@@ -43,16 +43,21 @@ const OptimizedThemeImage = ({
     preloadBoth
   });
 
-  const handleLoad = () => {
+  const handleLoad = useCallback(() => {
     setImageLoaded(true);
     onLoad?.();
-  };
+  }, [onLoad]);
 
-  const handleError = () => {
+  const handleError = useCallback(() => {
     console.error(`Failed to load image: ${imageUrl}`);
     setImageError(true);
     onError?.();
-  };
+  }, [imageUrl, onError]);
+
+  useEffect(() => {
+    setImageLoaded(false);
+    setImageError(false);
+  }, [imageUrl]);
 
   return (
     <div className="relative">
