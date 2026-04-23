@@ -40,13 +40,15 @@ const allLogoMappings = {
       '1.png', 'Frame 2.png', 'Frame 3.png', 'Frame 5.png', 'Frame 6.png',
       'Frame 7.png', 'Frame 8.png', 'Frame 9.png', 'Frame 10.png', 'Frame 11.png',
       'Frame 12.png', 'Frame 13.png', 'Frame 14.png', 'Frame 15.png', 'Frame 16.png',
-      'Frame 17.png', 'Frame 18.png', 'Frame 19.png', 'Frame 20.png', 'Frame 21.png'
+      'Frame 17.png', 'Frame 18.png', 'Frame 19.png', 'Frame 20.png', 'Frame 21.png',
+      'jalan-light.png', 'maa-gayatri-jewellers.png',
     ],
     dark: [
       '1.png', 'Frame 2.png', 'Frame 3.png', 'Frame 4.png', 'Frame 5.png',
       'Frame 6.png', 'Frame 7.png', 'Frame 8.png', 'Frame 9.png', 'Frame 10.png',
       'Frame 11.png', 'Frame 12.png', 'Frame 13.png', 'Frame 14.png', 'Frame 15.png',
-      'Frame 16.png', 'Frame 17.png', 'Frame 18.png', 'Frame 19.png', 'Frame 20.png'
+      'Frame 16.png', 'Frame 17.png', 'Frame 18.png', 'Frame 19.png', 'Frame 20.png',
+      'jalan.png', 'maa-gayatri-jewellers.png',
     ]
   },
   other: [

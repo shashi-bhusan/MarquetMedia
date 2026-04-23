@@ -10,7 +10,10 @@
     "upload-media": "node scripts/upload-to-cloudinary.js",
     "optimize-media": "npm run upload-media",
     "optimize-videos": "node scripts/optimize-videos.js",
-    "compress-videos": "npm run optimize-videos"
+    "compress-videos": "npm run optimize-videos",
+    "upload-partner-logos": "node scripts/upload-partner-logos.cjs",
+    "refine-partner-logos": "node scripts/refine-partner-logos.cjs",
+    "build-jalan-light": "node scripts/build-jalan-light-variant.cjs"
   },
   "dependencies": {
     "@cloudinary/react": "^1.14.3",

@@ -362,12 +362,28 @@ const darkLogos = [
   'eylex.png',
 ];
 
-// Generate client logos array dynamically
-const clientLogos = lightLogos.map((lightLogo, index) => ({
+// Generate client logos array dynamically (light/dark lists differ by one frame slot; keep pairing by index)
+const clientLogosFromArrays = lightLogos.map((lightLogo, index) => ({
   name: `Client ${index + 1}`,
   lightLogo: `/protfolio_logo_light/${lightLogo}`,
   darkLogo: `/protfolio_logo_dark/${darkLogos[index] || darkLogos[index % darkLogos.length]}`
 }));
+
+/** Additional marks for "OUR WORK speaks" — appended so light/dark index skew does not apply */
+const clientLogosExtra = [
+  {
+    name: 'JALAN',
+    lightLogo: '/protfolio_logo_light/jalan-light.png',
+    darkLogo: '/protfolio_logo_dark/jalan.png',
+  },
+  {
+    name: 'Maa Gayatri Jewellers',
+    lightLogo: '/protfolio_logo_light/maa-gayatri-jewellers.png',
+    darkLogo: '/protfolio_logo_dark/maa-gayatri-jewellers.png',
+  },
+] as const;
+
+const clientLogos = [...clientLogosFromArrays, ...clientLogosExtra];
 
 // Behind the Scenes videos data
 const btsVideos = [
@@ -457,10 +473,15 @@ const DualRowLogoGrid = () => {
   // Create logo boxes similar to service section with theme support
   const LogoBox = ({ client, index }: { client: typeof clientLogos[0]; index: number }) => {
     
-    const logoSrc = isDarkMode ? client.darkLogo : client.lightLogo;
   // Apply extra invert filter for specific frames in dark mode (21-24)
   const darkBasename = client.darkLogo.split('/').pop() || '';
   const normalizedBasename = decodeURIComponent(darkBasename).replace(/\s+/g, ' ').trim();
+  const lightBasename = decodeURIComponent(client.lightLogo.split('/').pop() || '').replace(/\s+/g, ' ').trim();
+
+  const isJalanPartner = client.name === 'JALAN';
+  const isMaaGayatriLogo = /^maa-gayatri-jewellers\.png$/i.test(lightBasename);
+  /** Partner marks (transparent PNGs) — keep color / white art without row grayscale */
+  const skipDarkMonochrome = isMaaGayatriLogo || isJalanPartner;
   
   // Frame 23 should have ONLY grayscale + high brightness in dark mode (to appear white)
   const isFrame23 = /Frame\s*23\.png$/i.test(normalizedBasename);
@@ -469,7 +490,9 @@ const DualRowLogoGrid = () => {
   // Build className - Frame 23 gets only grayscale + high brightness (appears white)
   let imageClassName = 'h-32 w-auto max-w-[160px] object-contain transition-all duration-500 transform group-hover:scale-110 group-hover:opacity-100';
   if (isDarkMode) {
-    if (isFrame23) {
+    if (skipDarkMonochrome) {
+      // Maa Gayatri + JALAN (theme-specific transparent PNGs)
+    } else if (isFrame23) {
       // Frame 23: only grayscale with very high brightness to appear white
       imageClassName += ' filter grayscale brightness-[3]';
     } else {
@@ -479,6 +502,9 @@ const DualRowLogoGrid = () => {
         imageClassName += ' invert';
       }
     }
+  } else if (isMaaGayatriLogo) {
+    // White line art on transparent → dark on cream
+    imageClassName += ' filter invert';
   }
 
     return (
