@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local dated backups (large archives; keep README/txt in repo if desired)
+/backups/**/*.zip
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,0 +1,19 @@
+# Captured 2026-04-29 (local machine)
+
+## git remote -v
+origin	https://github.com/spnsrk/marquetmedia.git (fetch)
+origin	https://github.com/spnsrk/marquetmedia.git (push)
+shashi	https://github.com/shashi-bhusan/MarquetMedia.git (fetch)
+shashi	https://github.com/shashi-bhusan/MarquetMedia.git (push)
+
+## git branch -vv (excerpt)
+main    17c257c [shashi/main] fix: theme hydration, image loading, and production build
+staging a633e28 [shashi/staging] feat(partners): JALAN dual-theme logos, Maa Gayatri assets, build and upload scripts
+
+## Commits
+shashi/staging: a633e28 feat(partners): JALAN dual-theme logos, Maa Gayatri assets, build and upload scripts
+origin/staging: b2344a4 ci: add GitHub Actions workflows for Vercel deployment
+
+## Notes
+- Local checkout was on branch `staging` at a633e28, tracking shashi/staging.
+- origin/staging and shashi/staging pointed at different commits at backup time.
