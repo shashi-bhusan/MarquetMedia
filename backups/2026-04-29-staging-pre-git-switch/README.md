@@ -58,6 +58,19 @@ If Vercel was connected to **`spnsrk/marquetmedia`**, it was building **`staging
 7. **Verify**  
    Open the staging URL, hard-refresh (or use an incognito window) and confirm partner logos / UI match commit **`a633e28`** (or newer on `staging`).
 
+### Optional: connect Git via API (no deletes)
+
+From the repo root, with a **Vercel token** (Account → Tokens) that has access to the project:
+
+1. List project slugs:  
+   `VERCEL_TOKEN=xxx npm run vercel:list-projects`  
+   (add `VERCEL_TEAM_ID=team_…` if the project is under a team.)
+
+2. Point the staging project at **`shashi-bhusan/MarquetMedia`** and set production branch **`staging`**:  
+   `VERCEL_TOKEN=xxx VERCEL_PROJECT=<slug-from-step-1> npm run vercel:connect-git`
+
+Scripts only **`PATCH`** the project’s Git settings; they do **not** delete the project, env vars, or deployment history. If the API returns permission/repo errors, finish **Settings → Git** once in the browser so the GitHub App is authorized, then run again or complete the link in the UI.
+
 ---
 
 ## Restore from `staging-tree-a633e28-shashi.zip`
