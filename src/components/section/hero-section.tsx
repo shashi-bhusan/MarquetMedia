@@ -13,6 +13,8 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showSplash, setShowSplash] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
+  /** True when /marquetmedia.mp4 fails (e.g. Git LFS pointer on deploy) — keep image fallback */
+  const [videoError, setVideoError] = useState(false);
   const [splashTimeout, setSplashTimeout] = useState<NodeJS.Timeout | null>(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -350,7 +352,7 @@ export default function HeroSection() {
         className={`relative w-full h-[100vh] overflow-hidden bg-black transition-all duration-1000 ${showSplash ? 'opacity-0 pointer-events-none scale-95' : 'opacity-100 scale-100'}`}
       >
         {/* Background Image while video loads */}
-        {!videoReady && (
+        {(!videoReady || videoError) && (
           <div className="absolute inset-0 z-10">
             <Image 
               src="/image.png"
@@ -370,10 +372,10 @@ export default function HeroSection() {
           loop
           playsInline
           preload="metadata"
-          className={`w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover transition-opacity duration-1000 ${videoReady && !videoError ? 'opacity-100' : 'opacity-0'}`}
           poster="/thumbnails/hero/marquetmedia.jpg"
           onCanPlay={handleVideoCanPlay}
-          onError={() => setVideoReady(true)}
+          onError={() => setVideoError(true)}
           style={{
             willChange: 'auto', // Remove will-change after video loads
           }}

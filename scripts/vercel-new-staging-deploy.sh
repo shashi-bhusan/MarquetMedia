@@ -26,6 +26,8 @@ fi
 
 git checkout staging
 git pull shashi staging 2>/dev/null || git pull origin staging 2>/dev/null || true
+# Hero video: public/*.mp4 are Git LFS — run `git lfs pull` before deploy or Vercel will upload ~100B pointers.
+command -v git-lfs >/dev/null 2>&1 && git lfs pull 2>/dev/null || true
 
 if [[ "${VERCEL_NEW_LINK:-}" == "1" ]]; then
   if [[ -d .vercel ]]; then
