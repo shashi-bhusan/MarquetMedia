@@ -1,6 +1,7 @@
-// Cloudinary video optimization configurations
+// Cloudinary video delivery — transformation strings use official parameter names
+// (e.g. w_1920 not width_1920). Invalid names caused 404s and broken staging video.
 
-/** Same account as `asset-mapping.json` poster URLs — mirrors prod when `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` is unset (e.g. staging). */
+/** Same account as `asset-mapping.json` poster URLs — mirrors prod when env unset. */
 export const DEFAULT_CLOUDINARY_CLOUD_NAME = 'dhiqzdvm3';
 
 export function getPublicCloudinaryCloudName(): string {
@@ -8,174 +9,53 @@ export function getPublicCloudinaryCloudName(): string {
   return fromEnv || DEFAULT_CLOUDINARY_CLOUD_NAME;
 }
 
-type VideoOptimizationType = 'hero' | 'portfolio' | 'bts' | 'poster';
+export type VideoOptimizationType = 'hero' | 'portfolio' | 'bts' | 'poster';
 
-interface TransformationConfig {
-  width?: number;
-  height?: number;
-  crop?: string;
-  gravity?: string;
-  quality?: string;
-  format?: string;
-  fetch_format?: string;
-}
-
-interface VideoConfig {
-  quality: string;
-  format: string;
-  flags?: string[];
-  transformation: TransformationConfig[];
-}
-
-interface VideoOptimizations {
-  [key: string]: VideoConfig;
-}
-
-export const videoOptimizations: VideoOptimizations = {
-  // Hero video - High quality, optimized for web
-  hero: {
-    quality: 'auto:good',
-    format: 'auto',
-    flags: ['progressive:semi', 'immutable_cache'],
-    transformation: [
-      {
-        width: 1920,
-        height: 1080,
-        crop: 'fill',
-        gravity: 'center',
-        quality: 'auto:good'
-      },
-      {
-        format: 'auto',
-        fetch_format: 'auto'
-      }
-    ]
-  },
-
-  // Portfolio videos - Balanced quality and size
-  portfolio: {
-    quality: 'auto:good',
-    format: 'auto',
-    flags: ['progressive:semi'],
-    transformation: [
-      {
-        width: 800,
-        height: 1422, // 9:16 aspect ratio
-        crop: 'fill',
-        gravity: 'center',
-        quality: 'auto:good'
-      },
-      {
-        format: 'auto',
-        fetch_format: 'auto'
-      }
-    ]
-  },
-
-  // BTS videos - Optimized for scrolling
-  bts: {
-    quality: 'auto:eco',
-    format: 'auto',
-    flags: ['progressive:semi'],
-    transformation: [
-      {
-        width: 480,
-        height: 854, // 9:16 aspect ratio
-        crop: 'fill',
-        gravity: 'center',
-        quality: 'auto:eco'
-      },
-      {
-        format: 'auto',
-        fetch_format: 'auto'
-      }
-    ]
-  },
-
-  // Thumbnail/poster images
-  poster: {
-    quality: 'auto:good',
-    format: 'auto',
-    transformation: [
-      {
-        width: 1920,
-        height: 1080,
-        crop: 'fill',
-        gravity: 'center',
-        quality: 'auto:good'
-      },
-      {
-        format: 'auto',
-        fetch_format: 'auto'
-      }
-    ]
-  }
+/** Valid Cloudinary video transformation chains per use-case */
+const VIDEO_TRANSFORMS: Record<VideoOptimizationType, string> = {
+  hero: 'w_1920,h_1080,c_fill,g_center,q_auto:good,f_auto',
+  portfolio: 'w_800,h_1422,c_fill,g_center,q_auto:good,f_auto',
+  bts: 'w_480,h_854,c_fill,g_center,q_auto:eco,f_auto',
+  poster: 'w_1920,h_1080,c_fill,g_center,q_auto:good,f_auto',
 };
 
-// Generate optimized video URL
-export const getOptimizedVideoUrl = (publicId: string, type: VideoOptimizationType = 'portfolio'): string => {
-  const config = videoOptimizations[type] || videoOptimizations.portfolio;
-  
-  // Build transformation string
-  const transformations = config.transformation.map((t: TransformationConfig) => {
-    return Object.entries(t)
-      .map(([key, value]) => `${key}_${value}`)
-      .join(',');
-  }).join('/');
+function transformForType(type: VideoOptimizationType): string {
+  return VIDEO_TRANSFORMS[type] || VIDEO_TRANSFORMS.portfolio;
+}
 
-  const flags = config.flags ? `fl_${config.flags.join(',fl_')}` : '';
-  const quality = config.quality ? `q_${config.quality}` : '';
-  const format = config.format ? `f_${config.format}` : '';
-
-  const params = [transformations, flags, quality, format]
-    .filter(Boolean)
-    .join('/');
-
-  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/${params}/${publicId}`;
+/** Streamable MP4 URL for a Cloudinary video `publicId` (folder/resource, no file extension). */
+export const getOptimizedVideoUrl = (
+  publicId: string,
+  type: VideoOptimizationType = 'portfolio'
+): string => {
+  const t = transformForType(type === 'poster' ? 'hero' : type);
+  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/${t}/${publicId}`;
 };
 
-// Generate optimized poster URL
+/** JPEG poster frame derived from the same video asset */
 export const getOptimizedPosterUrl = (publicId: string): string => {
-  const config = videoOptimizations.poster;
-  
-  const transformations = config.transformation.map((t: TransformationConfig) => {
-    return Object.entries(t)
-      .map(([key, value]) => `${key}_${value}`)
-      .join(',');
-  }).join('/');
-
-  const quality = config.quality ? `q_${config.quality}` : '';
-  const format = config.format ? `f_${config.format}` : '';
-
-  const params = [transformations, quality, format]
-    .filter(Boolean)
-    .join('/');
-
-  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/${params}/${publicId}.jpg`;
+  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/so_0,w_800,h_600,c_fill,q_auto,f_jpg/${publicId}.jpg`;
 };
 
-// Responsive video sources for different screen sizes
-export const getResponsiveVideoSources = (publicId: string, type: VideoOptimizationType = 'portfolio') => {
-  const baseConfig = videoOptimizations[type] || videoOptimizations.portfolio;
-  
+export const getResponsiveVideoSources = (
+  publicId: string,
+  type: VideoOptimizationType = 'portfolio'
+) => {
+  const desktop = getOptimizedVideoUrl(publicId, type);
+  const tablet =
+    type === 'hero'
+      ? `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/w_1280,h_720,c_fill,g_center,q_auto:good,f_auto/${publicId}`
+      : type === 'bts'
+        ? getOptimizedVideoUrl(publicId, 'bts')
+        : `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/w_640,h_1138,c_fill,g_center,q_auto:good,f_auto/${publicId}`;
+  const mobile =
+    type === 'hero'
+      ? `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/w_960,h_540,c_fill,g_center,q_auto:eco,f_auto/${publicId}`
+      : getOptimizedVideoUrl(publicId, 'bts');
+
   return [
-    // Desktop - High quality
-    {
-      src: getOptimizedVideoUrl(publicId, type),
-      media: '(min-width: 1024px)',
-      type: 'video/mp4'
-    },
-    // Tablet - Medium quality
-    {
-      src: getOptimizedVideoUrl(publicId, 'bts'), // Use smaller size
-      media: '(min-width: 768px)',
-      type: 'video/mp4'
-    },
-    // Mobile - Optimized for data usage
-    {
-      src: getOptimizedVideoUrl(publicId, 'bts'),
-      media: '(max-width: 767px)',
-      type: 'video/mp4'
-    }
+    { src: desktop, media: '(min-width: 1024px)', type: 'video/mp4' as const },
+    { src: tablet, media: '(min-width: 768px)', type: 'video/mp4' as const },
+    { src: mobile, media: '(max-width: 767px)', type: 'video/mp4' as const },
   ];
 };
