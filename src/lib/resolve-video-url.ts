@@ -1,16 +1,15 @@
 /**
  * Maps local public/ video paths to Cloudinary streaming URLs so staging/prod
  * match without relying on Git LFS binaries in the deployment bundle.
+ *
+ * Uses the same Cloudinary account as production: `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+ * when set, otherwise `DEFAULT_CLOUDINARY_CLOUD_NAME` in cloudinary-config (same as asset-mapping).
  */
 import assetMapping from '@/lib/asset-mapping.json';
 import { getOptimizedVideoUrl } from '@/lib/cloudinary-config';
 
 const videos = assetMapping.videos as Record<string, string>;
 const posters = assetMapping.posters as Record<string, string>;
-
-function cloudinaryEnabled(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
-}
 
 /** e.g. /reel-1.mp4 → reel-1, /bts/IMG_0038.MOV → IMG_0038, /marquetmedia.mp4 → marquetmedia */
 export function videoAssetKeyFromLocalPath(localPath: string): string | null {
@@ -29,9 +28,8 @@ function optimizationType(localPath: string): 'hero' | 'portfolio' | 'bts' {
   return 'hero';
 }
 
-/** Playback URL: Cloudinary when configured, otherwise the original path (local / LFS). */
+/** Playback URL: always Cloudinary for mapped paths (prod-equivalent account). */
 export function resolveVideoPlaybackUrl(localPath: string): string {
-  if (!cloudinaryEnabled()) return localPath;
   const key = videoAssetKeyFromLocalPath(localPath);
   if (!key) return localPath;
   const publicId = videos[key];
@@ -39,10 +37,10 @@ export function resolveVideoPlaybackUrl(localPath: string): string {
   return getOptimizedVideoUrl(publicId, optimizationType(localPath));
 }
 
-/** Poster: Cloudinary frame URL from asset-mapping when configured, else local thumbnail path. */
+/** Poster: Cloudinary frame URL from asset-mapping when available, else local thumbnail path. */
 export function resolveVideoPosterUrl(localPath: string): string {
   const key = videoAssetKeyFromLocalPath(localPath);
-  if (cloudinaryEnabled() && key && posters[key]) {
+  if (key && posters[key]) {
     return posters[key] as string;
   }
   if (localPath.includes('/reel-')) {

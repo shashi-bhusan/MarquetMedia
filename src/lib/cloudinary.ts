@@ -1,11 +1,12 @@
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { format, quality } from '@cloudinary/url-gen/actions/delivery';
+import { getPublicCloudinaryCloudName } from '@/lib/cloudinary-config';
 
 export const cld = new Cloudinary({
   cloud: {
-    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-  }
+    cloudName: getPublicCloudinaryCloudName(),
+  },
 });
 
 // Video optimization presets

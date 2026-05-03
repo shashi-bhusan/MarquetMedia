@@ -1,4 +1,13 @@
 // Cloudinary video optimization configurations
+
+/** Same account as `asset-mapping.json` poster URLs — mirrors prod when `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` is unset (e.g. staging). */
+export const DEFAULT_CLOUDINARY_CLOUD_NAME = 'dhiqzdvm3';
+
+export function getPublicCloudinaryCloudName(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME?.trim();
+  return fromEnv || DEFAULT_CLOUDINARY_CLOUD_NAME;
+}
+
 type VideoOptimizationType = 'hero' | 'portfolio' | 'bts' | 'poster';
 
 interface TransformationConfig {
@@ -122,7 +131,7 @@ export const getOptimizedVideoUrl = (publicId: string, type: VideoOptimizationTy
     .filter(Boolean)
     .join('/');
 
-  return `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${params}/${publicId}`;
+  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/${params}/${publicId}`;
 };
 
 // Generate optimized poster URL
@@ -142,7 +151,7 @@ export const getOptimizedPosterUrl = (publicId: string): string => {
     .filter(Boolean)
     .join('/');
 
-  return `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${params}/${publicId}.jpg`;
+  return `https://res.cloudinary.com/${getPublicCloudinaryCloudName()}/video/upload/${params}/${publicId}.jpg`;
 };
 
 // Responsive video sources for different screen sizes
