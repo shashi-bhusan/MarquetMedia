@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useCallback } from 'react';
+import { resolveVideoPlaybackUrl } from '@/lib/resolve-video-url';
 
 interface PerformanceMetrics {
   loadTime: number;
@@ -14,7 +15,7 @@ export const usePerformanceOptimization = () => {
     const criticalAssets = [
       '/MARQUET.svg',
       '/image.png',
-      '/marquetmedia.mp4'
+      resolveVideoPlaybackUrl('/marquetmedia.mp4'),
     ];
 
     criticalAssets.forEach(asset => {

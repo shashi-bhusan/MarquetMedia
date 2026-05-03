@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
+import { resolveVideoPlaybackUrl, resolveVideoPosterUrl } from '@/lib/resolve-video-url';
 import Image from 'next/image';
 import { ProfessionalButton } from '@/components/ui/professional-button';
 import { useScrollAnimations, ScrollAnimations } from '@/components/ScrollAnimations';
@@ -13,8 +14,11 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showSplash, setShowSplash] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
-  /** True when /marquetmedia.mp4 fails (e.g. Git LFS pointer on deploy) — keep image fallback */
+  /** True when hero video fails to load/decode — keep image fallback */
   const [videoError, setVideoError] = useState(false);
+
+  const heroVideoUrl = useMemo(() => resolveVideoPlaybackUrl('/marquetmedia.mp4'), []);
+  const heroPosterUrl = useMemo(() => resolveVideoPosterUrl('/marquetmedia.mp4'), []);
   const [splashTimeout, setSplashTimeout] = useState<NodeJS.Timeout | null>(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -373,15 +377,14 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           className={`w-full h-full object-cover transition-opacity duration-1000 ${videoReady && !videoError ? 'opacity-100' : 'opacity-0'}`}
-          poster="/thumbnails/hero/marquetmedia.jpg"
+          poster={heroPosterUrl}
           onCanPlay={handleVideoCanPlay}
           onError={() => setVideoError(true)}
           style={{
             willChange: 'auto', // Remove will-change after video loads
           }}
         >
-          <source src="/marquetmedia.mp4" type="video/mp4" />
-          <source src="/marquetmedia.webm" type="video/webm" />
+          <source src={heroVideoUrl} type="video/mp4" />
           {/* Fallback text for browsers that don't support video */}
           Your browser does not support the video tag.
         </video>

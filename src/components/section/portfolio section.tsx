@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { resolveVideoPlaybackUrl, resolveVideoPosterUrl } from '@/lib/resolve-video-url';
 import { Button } from '@/components/ui/button';
 import { ProfessionalButton } from '@/components/ui/professional-button';
 import { ArrowUpRight, ExternalLink, Play } from 'lucide-react';
@@ -32,6 +33,8 @@ const ReelVideoPlayer = ({
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const [isHovered, setIsHovered] = useState(false);
+  const playbackUrl = useMemo(() => resolveVideoPlaybackUrl(videoSrc), [videoSrc]);
+  const posterUrl = useMemo(() => resolveVideoPosterUrl(videoSrc), [videoSrc]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -173,7 +176,7 @@ const ReelVideoPlayer = ({
         video.removeEventListener('mousemove', handleMouseMove);
       };
     }
-  }, []);
+  }, [playbackUrl]);
 
   return (
     <div 
@@ -182,6 +185,7 @@ const ReelVideoPlayer = ({
     >
       {/* Video Player */}
       <video
+        key={playbackUrl}
         ref={videoRef}
         className="w-full h-full object-cover"
         loop
@@ -189,15 +193,9 @@ const ReelVideoPlayer = ({
         playsInline
         autoPlay
         preload="metadata"
-        poster={
-          videoSrc.includes('/reel-') 
-            ? `/thumbnails/reels/${videoSrc.split('/').pop()?.replace('.mp4', '.jpg')}` 
-            : videoSrc.includes('/bts/') 
-            ? `/thumbnails/bts/${videoSrc.split('/').pop()?.replace(/\.(mp4|MOV)$/i, '.jpg')}` 
-            : undefined
-        }
+        poster={posterUrl}
       >
-        <source src={videoSrc} type="video/mp4" />
+        <source src={playbackUrl} type="video/mp4" />
       </video>
 
       {/* Enhanced Custom Cursor */}
@@ -577,6 +575,8 @@ const DualRowLogoGrid = () => {
 const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const playbackUrl = useMemo(() => resolveVideoPlaybackUrl(video.videoSrc), [video.videoSrc]);
+  const posterUrl = useMemo(() => resolveVideoPosterUrl(video.videoSrc), [video.videoSrc]);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -611,7 +611,7 @@ const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: nu
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [playbackUrl]);
 
   return (
     <div 
@@ -619,20 +619,16 @@ const SimpleBTSCard = ({ video, index }: { video: typeof btsVideos[0]; index: nu
     >
       {/* Video */}
       <video
+        key={playbackUrl}
         ref={videoRef}
         className="w-full h-full object-cover"
         loop
         muted
         playsInline
         preload="metadata"
-        poster={
-          video.videoSrc.includes('/bts/') 
-            ? `/thumbnails/bts/${video.videoSrc.split('/').pop()?.replace(/\.(mp4|MOV)$/i, '.jpg')}` 
-            : undefined
-        }
+        poster={posterUrl}
       >
-        <source src={video.videoSrc} type="video/quicktime" />
-        <source src={video.videoSrc} type="video/mp4" />
+        <source src={playbackUrl} type="video/mp4" />
       </video>
       
       {/* Simple recording indicator */}

@@ -3,6 +3,7 @@ import { Libre_Baskerville, Montserrat } from "next/font/google";
 import "./globals.css";
 import { PerformanceInitializer } from "@/components/PerformanceInitializer";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { resolveVideoPlaybackUrl } from "@/lib/resolve-video-url";
 
 const baskerville = Libre_Baskerville({
   variable: "--font-baskerville",
@@ -40,12 +41,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const heroPreloadVideo = resolveVideoPlaybackUrl("/marquetmedia.mp4");
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         {/* Preload critical resources */}
         <link rel="preload" href="/MARQUET.svg" as="image" type="image/svg+xml" />
-        <link rel="preload" href="/marquetmedia.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href={heroPreloadVideo} as="video" type="video/mp4" crossOrigin="anonymous" />
         <link rel="preload" href="/image.png" as="image" type="image/png" />
         
         {/* DNS prefetch for external resources */}
